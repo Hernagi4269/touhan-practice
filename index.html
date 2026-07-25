@@ -6,10 +6,10 @@
 <meta name="theme-color" content="#111827">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="登販">
-<link rel="manifest" href="./manifest.json">
+<link rel="manifest" href="./manifest.json?v=14.1.2">
 <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
-<link rel="stylesheet" href="./style.css">
-<title>登録販売者 試験対策</title>
+<link rel="stylesheet" href="./style.css?v=14.1.2">
+<title>登録販売者 試験対策 v14.1.2</title>
 </head>
 <body>
 <div id="login" class="screen">
@@ -156,7 +156,7 @@
     <section id="jsonWorkspaceMenu">
       <button class="card workspaceMenuButton" data-json-page="problem"><div><b>問題JSON</b><small>生成した問題をアプリへ追加</small></div><span>›</span></button>
       <button class="card workspaceMenuButton" data-json-page="explanation"><div><b>詳しい解説JSON</b><small>解説依頼の出力・解説結果の取込</small></div><span>›</span></button>
-      <button class="card workspaceMenuButton" data-json-page="learning"><div><b>学習状況JSON</b><small>正誤・迷った・出題履歴を生成エンジンへ渡す</small></div><span>›</span></button>
+      <button class="card workspaceMenuButton" data-json-page="learning"><div><b>学習状況JSON</b><small>正誤・迷った・出題履歴・詳しい解説を生成エンジンへ渡す</small></div><span>›</span></button>
     </section>
     <section id="jsonWorkspaceProblem" class="hidden">
       <div class="card">
@@ -174,6 +174,8 @@
         <textarea id="explanationImportBox" placeholder='{"type":"touhan_explanation_result",...}'></textarea>
         <label class="filePickerLabel">解説JSONファイルを選択<input id="explanationFile" type="file" accept="application/json,.json"></label>
         <div class="buttonRow"><button id="importExplanationJson" class="mainBtn">詳しい解説JSONを取り込み</button><button id="clearExplanationImportBox" class="subBtn">全消去</button></div>
+        <div class="buttonRow"><button id="exportTkdbPatch" class="mainBtn">TKDB追加分を書き出す</button><button id="clearTkdbPatchQueue" class="subBtn">追加候補を消去</button></div>
+        <p class="note">取り込んだ詳しい解説は端末内で即時利用され、同時にTKDB追加候補へ蓄積されます。書き出したパッチをTKDBの統合ツールへ渡すと正式DBへ反映できます。</p>
       </div>
     </section>
     <section id="jsonWorkspaceLearning" class="hidden">
@@ -240,7 +242,7 @@
 </section>
 <section id="settings" class="page hidden">
   <div class="card"><h2>設定</h2><button id="resetSet" class="subBtn">現在の回答をリセット</button><button id="resetAll" class="dangerBtn">回答履歴を全削除</button></div>
-  <div class="card"><h2>バージョン</h2><div class="versionBox">Version <b id="appVersion">v13.8.0</b><br>Build <b id="appBuild">2026-07-21</b></div></div>
+  <div class="card"><h2>バージョン</h2><div class="versionBox">Version <b id="appVersion">v14.1.2</b><br>Build <b id="appBuild">2026-07-25</b></div></div>
 </section>
 
 </main>
@@ -264,6 +266,6 @@
   </div>
 </div>
 
-<script src="./app.js"></script>
+<script src="./app.js?v=14.1.2"></script>
 </body>
 </html>

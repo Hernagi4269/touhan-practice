@@ -1,5 +1,5 @@
-const CACHE="touhan-practice-v13.8.0";
-const ASSETS=["./","./index.html","./style.css","./app.js","./manifest.json","./icon.svg","./icon-192.png","./icon-512.png","./apple-touch-icon.png","./data/questions.json","./version.json"];
+const CACHE="touhan-practice-v14.1.2";
+const ASSETS=["./","./index.html?v=14.1.2","./style.css?v=14.1.2","./app.js?v=14.1.2","./manifest.json?v=14.1.2","./icon.svg","./icon-192.png","./icon-512.png","./apple-touch-icon.png","./data/questions.json","./data/tkdb-runtime.json","./version.json"];
 self.addEventListener("install",e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)));self.skipWaiting()});
 self.addEventListener("activate",e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))));self.clients.claim()});
 self.addEventListener("message",e=>{if(e.data&&e.data.type==="SKIP_WAITING")self.skipWaiting()});
