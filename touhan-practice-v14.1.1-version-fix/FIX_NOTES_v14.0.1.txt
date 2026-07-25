@@ -1,0 +1,5 @@
+v14.0.1
+- TKDB runtime参照を実コードで検証。
+- source question ID / canonical TKDB ID / 複数tkdbKnowledgeIdsの参照に対応。
+- 本番形式の複数Knowledge問題を誤って単一Knowledgeへ蓄積しない安全策を追加。
+- manifest・service worker・画面内バージョンの不整合を修正。
