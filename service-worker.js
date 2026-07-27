@@ -1,8 +1,8 @@
-const CACHE = "touhan-practice-v14.3.1";
+const CACHE = "touhan-practice-v14.3.2";
 const STATIC_ASSETS = [
-  "./style.css?v=14.3.1",
-  "./app.js?v=14.3.1",
-  "./manifest.json?v=14.3.1",
+  "./style.css?v=14.3.2",
+  "./app.js?v=14.3.2",
+  "./manifest.json?v=14.3.2",
   "./icon.svg",
   "./icon-192.png",
   "./icon-512.png",
