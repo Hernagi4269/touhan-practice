@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#111827">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="登販">
+<link rel="manifest" href="./manifest.json?v=14.3.0">
+<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+<link rel="stylesheet" href="./style.css?v=14.3.0">
+<title>登録販売者 試験対策 v14.3.0</title>
+</head>
+<body>
+<div id="login" class="screen">
+  <div class="loginBox">
+    <div class="logo">登販</div>
+    <h1>登録販売者<br>試験対策</h1>
+    <input id="pass" type="password" placeholder="パスワード">
+    <button id="loginBtn" class="mainBtn">開始</button>
+    <p class="small">初期パスワード：touhan2026</p>
+    <p id="loginErr" class="err hidden">パスワードが違います。</p>
+  </div>
+</div>
+
+<div id="app" class="hidden">
+<header>
+  <div><h1>登録販売者 試験対策</h1><p id="sub"></p></div>
+  <button id="lockBtn" class="smallBtn headerLogoutBtn">ログアウト</button>
+</header>
+
+<nav>
+  <button data-tab="home" class="active">ホーム</button>
+  <button data-tab="solve">問題</button>
+  <button data-tab="wrong">復習</button>
+  <button data-tab="stats">分析</button>
+  <button data-tab="data">データ</button>
+</nav>
+<button id="timerFab" class="timerFab" aria-label="タイマー"><span class="timerFabIcon">⏱</span><span id="timerFabTime" class="timerFabTime">30:00</span></button>
+<button id="settingsFab" class="settingsFab" aria-label="設定">⚙</button>
+
+<main>
+<section id="home" class="page">
+  <div class="card countdownCard">
+    <div class="homeCardHead"><h2>試験まで</h2><button id="getTodayJson" class="smallBtn homeJsonBtn">問題JSONを取得</button></div>
+    <div id="countdown" class="countdownGrid"></div>
+    <div id="examProgress" class="note"></div>
+  </div>
+
+
+  <div id="resumeCard" class="card resumeCard hidden">
+    <div><b>前回の続き</b><div id="resumeLabel" class="note"></div></div>
+    <button id="resumeStudy" class="mainBtn compactBtn">再開</button>
+  </div>
+
+  <div id="dueNotice" class="card notice hidden"></div>
+
+  <div class="card todayStatusCard">
+    <div class="homeCardHead"><h2>今日の問題</h2><div class="todayHeadStats"><span id="streak" class="streakChip">連続0日</span><span id="todayProgress" class="todayProgressBig">0/120</span></div></div>
+    <p id="todayLabel" class="todayLabel"></p>
+    <div id="todayExecutionStatus" class="todayExecutionStatus"></div>
+  </div>
+
+  <div class="card"><h3>次にやること</h3><div id="nextAction" class="note"></div></div>
+  <div class="card"><h3>学習カレンダー</h3><div id="studyCalendar" class="calendar"></div></div>
+</section>
+
+<section id="solve" class="page hidden">
+  <div class="studyCommandCard">
+    <div class="studyCommandTop">
+      <div><span class="eyebrow">現在の学習</span><strong id="currentSelectionLabel">選択中の問題</strong></div>
+      <button id="toggleProblemSelector" class="selectorToggle" aria-expanded="false">変更</button>
+    </div>
+    <div class="studyProgressLine"><span id="qProgress"></span><span id="unanswered"></span></div>
+    <div id="problemSelectorPanel" class="problemSelectorPanel hidden">
+      <div class="selectors selectors3">
+        <label>カテゴリ<select id="categorySelect"></select></label>
+        <label>回<select id="examSelect"></select></label>
+        <label>セット<select id="setSelect"></select></label>
+      </div>
+      <div class="studyModeRow">
+        <button id="normalModeBtn" class="modePill active">通常</button>
+        <button id="weakModeBtn" class="modePill">苦手</button>
+        <button id="randomModeBtn" class="modePill">ランダム</button>
+      </div>
+      <div id="chapterQuickFilter" class="chapterQuickFilter"></div>
+      <input id="searchBox" class="studySearch" placeholder="問題を検索">
+    </div>
+  </div>
+
+  <div id="empty" class="card hidden"><h2>このセットは未登録です</h2><p class="note">追加タブから問題JSONを取り込んでください。</p></div>
+  <div id="questionCard" class="card questionFocusCard"></div>
+
+  <div class="card">
+    <div class="pager"><button id="prevBtn">← 前へ</button><button id="nextBtn">次へ →</button></div>
+    <div id="jumpGrid" class="jumpGrid"></div>
+  </div>
+
+  <div class="card actionFlowCard">
+    <button id="gradeCurrent" class="mainBtn gradeActionBtn">採点・分析</button>
+    <p class="note actionFlowNote">採点後、正答率・章別結果・復習登録をアプリ内で反映します。</p>
+    <hr class="softRule">
+    <button id="copyCurrent" class="mainBtn">全問の詳しい解説JSONをコピー</button>
+    <button id="openChatGPT" class="subBtn">ChatGPTで詳しい解説</button>
+  </div>
+</section>
+
+
+<section id="wrong" class="page hidden">
+  <div class="reviewHero">
+    <span class="eyebrow">復習キュー</span>
+    <div class="reviewHeroHead"><h2>今やるべき復習</h2><span id="wrongCount" class="reviewTotalBadge">0項目</span></div>
+    <p>迷わず開始できるよう、期限・誤答・迷った問題を自動で整理します。</p>
+  </div>
+  <div class="reviewPrimaryGrid">
+    <button id="startTodayReview" class="reviewPrimaryCard reviewDueCard">
+      <span>今日の復習</span><strong id="todayReviewCount">0問</strong><small>期限が来た問題を出題</small>
+    </button>
+    <button id="startUnmasteredReview" class="reviewPrimaryCard">
+      <span>未克服だけ</span><strong id="unmasteredReviewCount">0問</strong><small>誤答後、定着確認前の問題</small>
+    </button>
+  </div>
+  <div class="reviewMenuLabel">詳しく選ぶ</div>
+  <button id="openKnowledgeReview" class="reviewMenuCard"><div><b>知識テーマ別</b><small>章とテーマから弱点を確認</small></div><span>›</span></button>
+  <button id="openWeakReview" class="reviewMenuCard"><div><b>誤答履歴</b><small>日付とセットから振り返る</small></div><span>›</span></button>
+</section>
+
+<section id="knowledgeReviewPage" class="reviewDetailPage hidden" aria-hidden="true">
+  <div class="reviewDetailHeader smartOverlayHeader">
+    <button id="knowledgeReviewBackBtn" class="overlayBackBtn" aria-label="前の画面へ戻る">←</button>
+    <div class="overlayTitleBlock"><h2 id="knowledgeReviewTitle">知識テーマ別復習</h2><div id="knowledgeReviewMeta" class="note"></div></div>
+  </div>
+  <div id="knowledgeReviewBody" class="reviewDetailBody"></div>
+  <button id="knowledgeReviewTopBtn" class="overlayTopFab" aria-label="ページ上部へ戻る">↑</button>
+</section>
+
+<section id="weakReviewPage" class="reviewDetailPage hidden" aria-hidden="true">
+  <div class="reviewDetailHeader smartOverlayHeader">
+    <button id="weakReviewBackBtn" class="overlayBackBtn" aria-label="前の画面へ戻る">←</button>
+    <div class="overlayTitleBlock"><h2 id="weakReviewTitle">苦手復習</h2><div id="weakReviewMeta" class="note">日付を選択してください</div></div>
+  </div>
+  <div id="weakReviewBody" class="reviewDetailBody"></div>
+  <button id="weakReviewTopBtn" class="overlayTopFab" aria-label="ページ上部へ戻る">↑</button>
+</section>
+
+<section id="reviewDetailPage" class="reviewDetailPage hidden" aria-hidden="true">
+  <div class="reviewDetailHeader smartOverlayHeader">
+    <button id="reviewBackBtn" class="overlayBackBtn" aria-label="前の画面へ戻る">←</button>
+    <div class="overlayTitleBlock"><h2 id="reviewDetailTitle">復習</h2><div id="reviewDetailMeta" class="note"></div></div>
+  </div>
+  <div id="reviewDetailBody" class="reviewDetailBody"></div>
+  <button id="reviewTopBtn" class="overlayTopFab" aria-label="ページ上部へ戻る">↑</button>
+</section>
+
+<section id="solveExplanationPage" class="reviewDetailPage hidden" aria-hidden="true">
+  <div class="reviewDetailHeader smartOverlayHeader">
+    <button id="closeSolveExplanation" class="overlayBackBtn" aria-label="問題画面へ戻る">←</button>
+    <div class="overlayTitleBlock"><h2 id="solveExplanationTitle">解説</h2><div id="solveExplanationMeta" class="note"></div></div>
+  </div>
+  <div id="solveExplanationBody" class="reviewDetailBody"></div>
+  <button id="solveExplanationTopBtn" class="overlayTopFab" aria-label="ページ上部へ戻る">↑</button>
+</section>
+
+<section id="jsonWorkspacePage" class="reviewDetailPage hidden" aria-hidden="true">
+  <div class="reviewDetailHeader smartOverlayHeader">
+    <button id="closeJsonWorkspace" class="overlayBackBtn" aria-label="データ画面へ戻る">←</button>
+    <div class="overlayTitleBlock"><h2 id="jsonWorkspaceTitle">JSON・学習データ</h2><div id="jsonWorkspaceMeta" class="note">項目を選択してください</div></div>
+  </div>
+  <div class="reviewDetailBody jsonWorkspaceBody">
+    <section id="jsonWorkspaceMenu">
+      <button class="card workspaceMenuButton" data-json-page="problem"><div><b>問題JSON</b><small>生成した問題をアプリへ追加</small></div><span>›</span></button>
+      <button class="card workspaceMenuButton" data-json-page="explanation"><div><b>詳しい解説JSON</b><small>解説依頼の出力・解説結果の取込</small></div><span>›</span></button>
+      <button class="card workspaceMenuButton" data-json-page="learning"><div><b>学習状況JSON</b><small>正誤・迷った・出題履歴・詳しい解説を生成エンジンへ渡す</small></div><span>›</span></button>
+    </section>
+    <section id="jsonWorkspaceProblem" class="hidden">
+      <div class="card">
+        <h3>問題JSON</h3>
+        <label>問題カテゴリ<select id="importCategorySelect"></select></label>
+        <textarea id="importBox" placeholder="ここに問題JSONを貼り付け"></textarea>
+        <div class="buttonRow"><button id="importJson" class="mainBtn">問題JSONを取り込み</button><button id="clearImportBox" class="subBtn">全消去</button></div>
+      </div>
+    </section>
+    <section id="jsonWorkspaceExplanation" class="hidden">
+      <div class="card">
+        <h3>詳しい解説JSON</h3>
+        <p class="note">ChatGPTから返されたJSONを読み込むと、復習画面と解説PDFへ反映されます。</p>
+        <div class="buttonRow"><button id="copyExplanationRequest" class="mainBtn">全問の解説依頼JSONをコピー</button><button id="downloadExplanationRequest" class="subBtn">解説依頼JSONを保存</button><button id="copyMissingExplanationRequest" class="subBtn">未取得だけコピー</button></div>
+        <textarea id="explanationImportBox" placeholder='{"type":"touhan_explanation_result",...}'></textarea>
+        <label class="filePickerLabel">解説JSONファイルを選択<input id="explanationFile" type="file" accept="application/json,.json"></label>
+        <div class="buttonRow"><button id="importExplanationJson" class="mainBtn">詳しい解説JSONを取り込み</button><button id="clearExplanationImportBox" class="subBtn">全消去</button></div>
+        <div class="buttonRow"><button id="exportTkdbPatch" class="mainBtn">TKDB追加分を書き出す</button><button id="clearTkdbPatchQueue" class="subBtn">追加候補を消去</button></div>
+        <p class="note">取り込んだ詳しい解説は端末内で即時利用され、同時にTKDB追加候補へ蓄積されます。書き出したパッチをTKDBの統合ツールへ渡すと正式DBへ反映できます。</p>
+      </div>
+    </section>
+    <section id="jsonWorkspaceLearning" class="hidden">
+      <div class="card">
+        <h3>学習状況JSON</h3>
+        <p class="note">採点済み問題の正誤、迷った記録、最終解答日時をまとめます。生成エンジンへ読み込ませると、未出題を最優先し、その次に誤答・迷った問題を優先できます。</p>
+        <div id="learningStateSummary" class="note"></div>
+        <div class="buttonRow"><button id="downloadLearningState" class="mainBtn">学習状況JSONを保存</button><button id="copyLearningState" class="subBtn">コピー</button></div>
+      </div>
+    </section>
+  </div>
+  <button id="jsonWorkspaceTopBtn" class="overlayTopFab" aria-label="ページ上部へ戻る">↑</button>
+</section>
+<section id="stats" class="page hidden">
+  <div class="card analysisHero"><h2>分析</h2><p class="note">成績の羅列ではなく、次に何を復習するかを決める画面です。</p></div>
+  <div class="card"><div class="homeCardHead"><h2>今日のフィードバック</h2><span id="todayFeedbackScore" class="categoryBadge">未採点</span></div><div id="todayActionFeedback" class="analysisActionBox"></div><button id="copyAutoFeedback" class="subBtn">フィードバックをコピー</button></div>
+  <div class="card"><div class="homeCardHead"><h2>要復習サマリー</h2><span id="reviewThemeCount" class="categoryBadge">0項目</span></div><div id="reviewSummary"></div></div>
+  <div class="card"><h2>問題DB消化率</h2><div id="questionCoverage"></div></div>
+  <div class="card"><h2>知識テーマ消化率</h2><div id="knowledgeCoverage"></div></div>
+  <div class="card"><div class="homeCardHead"><h2>学習履歴</h2><span class="note">日別平均</span></div><div id="dailyRateGraph"></div><div id="learningHistory"></div></div>
+</section>
+<section id="data" class="page hidden">
+  <div class="dataHero card">
+    <h2>データ</h2>
+    <p class="note">問題の追加・管理・教材出力・バックアップを、この画面にまとめています。</p>
+    <div class="dataQuickNav">
+      <a href="#dataImport">追加</a><a href="#dataManage">管理</a><a href="#dataPdf">PDF</a><a href="#dataBackup">バックアップ</a>
+    </div>
+  </div>
+  <div id="dataImport" class="card dataSection dataLauncherCard">
+    <div class="dataLauncherText"><b>JSON入力・解説管理</b><small>問題追加、詳しい解説、学習状況</small></div>
+    <button id="openJsonWorkspace" class="mainBtn compactBtn">開く</button>
+  </div>
+  <div id="dataManage" class="card dataSection dataLauncherCard">
+    <div class="dataLauncherText"><b>問題データ管理</b><small>日付・カテゴリから選択して管理</small></div>
+    <button id="openManageWorkspace" class="mainBtn compactBtn">開く</button>
+  </div>
+  <details id="dataPdf" class="card dataSection">
+    <summary><span>問題PDF</span><small>教材として保存・共有</small></summary>
+    <div class="dataSectionBody"><p class="note">現在選択している問題回をPDF用ページで開きます。ページ上部の「PDF保存画面を開く」から保存し、「アプリに戻る」で戻れます。</p><div class="pdfActionGrid"><button id="printQuestionsOnly" class="subBtn">問題PDFを開く</button><button id="printQuestionsFull" class="mainBtn">問題＋解答＋解説PDFを開く</button></div><p class="note">詳しい解説が未取得の問題は、解説依頼JSONをChatGPTへ送り、返された詳しい解説JSONを読み込むと復習画面とPDFに反映されます。</p></div>
+  </details>
+  <details id="dataBackup" class="card dataSection">
+    <summary><span>バックアップ</span><small>端末移行・復元</small></summary>
+    <div class="dataSectionBody"><p class="note">学習履歴・追加問題・苦手復習・詳しい解説・削除状態をまとめて保存します。端末変更やURL変更の前に書き出してください。</p><button id="exportData" class="mainBtn">学習データを書き出す</button><button id="copyBackupData" class="subBtn">バックアップJSONをコピー</button><div id="backupStatus" class="note">書き出し履歴なし</div><label class="fileImportLabel">バックアップファイルを選択<input id="backupFile" type="file" accept="application/json,.json"></label><textarea id="restoreBox" placeholder="バックアップJSONを貼り付け"></textarea><button id="restoreData" class="subBtn">貼り付けたJSONから復元</button><p class="note">30日以上書き出していない場合は、起動時にバックアップを促します。内部にも最新状態を自動保存します。</p></div>
+  </details>
+</section>
+<section id="manageDetailPage" class="reviewDetailPage hidden" aria-hidden="true">
+  <div class="reviewDetailHeader smartOverlayHeader">
+    <button id="manageBackBtn" class="overlayBackBtn" aria-label="前の画面へ戻る">←</button>
+    <div class="overlayTitleBlock"><h2 id="manageDetailTitle">問題データ管理</h2><div id="manageDetailMeta" class="note">日付を選択してください</div></div>
+  </div>
+  <div class="reviewDetailBody manageWorkspaceBody">
+    <section id="manageWorkspaceList">
+      <div class="card manageControlCard">
+        <div class="manageUtility"><button id="restoreLastDeleted" class="smallBtn">直前の削除を復元</button><button id="repairStorage" class="smallBtn">保存データを修復</button></div>
+        <div class="manageFilters"><label>表示<select id="manageFilter"><option value="custom">追加問題のみ</option><option value="all">すべて</option><option value="one_by_one">一問一答</option><option value="practice60">総合演習60問</option><option value="exam_style">本番形式120問</option></select></label><label>並び替え<select id="manageSort"><option value="new">新しい順</option><option value="old">古い順</option><option value="title">タイトル順</option><option value="questions">問題数が多い順</option></select></label><label>検索<input id="manageSearch" placeholder="日付・タイトル・セット名で検索"></label></div>
+      </div>
+      <div id="examManageList"></div>
+      <details class="card dangerZone"><summary>一括削除・標準問題</summary><div class="manageActions"><button id="deleteAllCustom" class="dangerBtn">追加問題を全削除</button><button id="deleteAllBuiltin" class="dangerBtn">標準内蔵を全削除</button><button id="restoreAllBuiltin" class="smallBtn">標準内蔵を復元</button></div></details>
+    </section>
+    <section id="manageWorkspaceDetail" class="hidden"></section>
+  </div>
+  <button id="manageTopBtn" class="overlayTopFab" aria-label="ページ上部へ戻る">↑</button>
+</section>
+<section id="settings" class="page hidden">
+  <div class="card"><h2>設定</h2><button id="resetSet" class="subBtn">現在の回答をリセット</button><button id="resetAll" class="dangerBtn">回答履歴を全削除</button></div>
+  <div class="card"><h2>バージョン</h2><div class="versionBox">Version <b id="appVersion">v14.3.0</b><br>Build <b id="appBuild">2026-07-26</b></div></div>
+</section>
+
+</main>
+
+</div>
+
+
+<div id="timerModal" class="modal hidden"><div class="modalBox timerMini"><div class="homeCardHead"><h2>タイマー</h2><button id="closeTimerModal" class="smallBtn">閉じる</button></div><div class="timerDisplay">30:00</div><div class="timerStatus">停止中</div><label>分<input id="quickTimerMinutes" type="number" min="1" value="30"></label><div class="buttonRow"><button id="quickTimerStart" class="mainBtn">開始</button><button class="subBtn timerPauseBtn">一時停止</button><button class="subBtn timerResumeBtn">再開</button><button class="subBtn timerResetBtn">リセット</button></div></div></div>
+
+<div id="toast"></div>
+<div id="timerStartModal" class="modal hidden">
+  <div class="modalBox">
+    <h2>本番モード</h2>
+    <p id="timerStartText" class="note"></p>
+    <label>制限時間（分）
+      <input id="timerStartMinutes" type="number" min="1" max="300" inputmode="numeric">
+    </label>
+    <div id="timerCountdown" class="countdownText hidden">3</div>
+    <button id="timerStartConfirm" class="mainBtn">開始</button>
+    <button id="timerStartCancel" class="subBtn">戻る</button>
+  </div>
+</div>
+
+<script src="./app.js?v=14.3.0"></script>
+</body>
+</html>
