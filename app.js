@@ -1,5 +1,5 @@
-const APP_VERSION="v14.3.4",BUILD_DATE="2026-07-27";
-const P="touhan2026",DATA_URL="./data/questions.json",SHORT_EXPLANATION_DB_URL="./data/tkdb-runtime.json",LOGIN="touhan_login_v8",STORE="touhan_answers_v8",CUSTOM="touhan_custom_exams_v8",CUSTOM_TRASH="touhan_custom_exams_trash_v1",HIDDEN_BUILTIN="touhan_hidden_builtin_v1",DELETE_BACKUP="touhan_delete_backup_v2",TIMER_STORE="touhan_timer_v10",SESSION_STORE="touhan_session_v12",WRONG_STORE="touhan_wrong_v12",EXPLANATION_STORE="touhan_detailed_explanations_v1",FULL_BACKUP_STORE="touhan_full_backup_v1",LAST_EXPORT_STORE="touhan_last_export_v1",TKDB_PATCH_STORE="touhan_tkdb_pending_patches_v1",EMBED={"meta": {"appName": "登録販売者 試験対策", "version": "14.3.4", "examDates": [{"label": "第1回試験", "date": "2026-08-26"}, {"label": "第2回試験", "date": "2026-09-06"}], "today": {"examId": "day-001", "setId": "day-001-set-1"}}, "exams": [{"id": "day-001", "title": "第1回", "date": "2026/07/04", "sets": [{"id": "day-001-set-1", "title": "第1セット", "note": "全120問中 1/4", "questions": [{"no": 1, "chapter": "第1章", "source": "改題", "answer": "×", "text": "医薬品は、期待される薬効のみをもたらし、有害作用を生じることはない。", "explanation": "医薬品には副作用等の有害作用が起こり得ます。"}, {"no": 2, "chapter": "第1章", "source": "改題", "answer": "○", "text": "一般用医薬品であっても、市販後に有効性や安全性に関する情報が集積され、必要に応じて見直しが行われる。", "explanation": "市販後も安全性情報が収集されます。"}, {"no": 3, "chapter": "第1章", "source": "改題", "answer": "×", "text": "一般用医薬品は、医療用医薬品よりも保健衛生上のリスクが高い。", "explanation": "一般用医薬品は相対的にリスクが低いものです。"}, {"no": 4, "chapter": "第1章", "source": "改題", "answer": "○", "text": "セルフメディケーションとは、軽度な身体の不調について、自らの判断で適切に一般用医薬品等を利用する考え方である。", "explanation": "軽度な不調の自己管理を指します。"}, {"no": 5, "chapter": "第1章", "source": "改題", "answer": "×", "text": "一般用医薬品は、添付文書を確認せず経験だけで使用しても問題ない。", "explanation": "添付文書確認が重要です。"}, {"no": 6, "chapter": "第2章", "source": "改題", "answer": "○", "text": "胃液中の塩酸には、タンパク質の消化を助ける働きがある。", "explanation": "胃酸はタンパク質消化に関与します。"}, {"no": 7, "chapter": "第2章", "source": "改題", "answer": "○", "text": "小腸は栄養素の吸収に重要な役割を果たす。", "explanation": "小腸は吸収の中心です。"}, {"no": 8, "chapter": "第2章", "source": "改題", "answer": "○", "text": "肝臓は胆汁を産生する。", "explanation": "胆汁は肝臓で産生されます。"}, {"no": 9, "chapter": "第2章", "source": "改題", "answer": "○", "text": "腎臓は老廃物の排泄だけでなく、水分や電解質の調節にも関与する。", "explanation": "腎臓は体液調節に関与します。"}, {"no": 10, "chapter": "第2章", "source": "改題", "answer": "×", "text": "心臓は静脈血のみを全身へ送り出している。", "explanation": "左心室は動脈血を全身へ送ります。"}, {"no": 11, "chapter": "第3章", "source": "改題", "answer": "○", "text": "第一類医薬品は、販売時に薬剤師による情報提供が義務付けられている。", "explanation": "第一類は薬剤師対応です。"}, {"no": 12, "chapter": "第3章", "source": "改題", "answer": "×", "text": "要指導医薬品は、インターネット販売できる。", "explanation": "要指導医薬品は対面販売です。"}, {"no": 13, "chapter": "第3章", "source": "改題", "answer": "○", "text": "登録販売者は、第二類医薬品及び第三類医薬品を販売できる。", "explanation": "第二類・第三類を扱えます。"}, {"no": 14, "chapter": "第3章", "source": "改題", "answer": "○", "text": "指定第二類医薬品は、陳列方法に一定の基準が設けられている。", "explanation": "陳列に配慮が必要です。"}, {"no": 15, "chapter": "第3章", "source": "改題", "answer": "○", "text": "医薬品の広告では、虚偽又は誇大な表現は禁止されている。", "explanation": "虚偽・誇大広告は禁止です。"}, {"no": 16, "chapter": "第3章", "source": "改題", "answer": "○", "text": "医薬品販売業者には、苦情処理体制の整備が求められる。", "explanation": "相談・苦情対応が必要です。"}, {"no": 17, "chapter": "第3章", "source": "改題", "answer": "×", "text": "配置販売業では、店舗を設ける必要がある。", "explanation": "配置販売は家庭等へ配置する形態です。"}, {"no": 18, "chapter": "第3章", "source": "改題", "answer": "○", "text": "登録販売者は、一定の実務・業務経験等の要件を満たせば店舗管理者になれる場合がある。", "explanation": "管理者要件を満たせば可能です。"}, {"no": 19, "chapter": "第3章", "source": "改題", "answer": "×", "text": "第一類医薬品は、すべて登録販売者のみが販売できる。", "explanation": "第一類は薬剤師です。"}, {"no": 20, "chapter": "第3章", "source": "改題", "answer": "○", "text": "医薬品副作用被害救済制度は、一定の条件を満たした場合に給付対象となる。", "explanation": "一定条件で救済対象です。"}, {"no": 21, "chapter": "第3章", "source": "改題", "answer": "×", "text": "一般用医薬品は、承認後は安全性の再評価が行われない。", "explanation": "承認後も評価されます。"}, {"no": 22, "chapter": "第3章", "source": "改題", "answer": "○", "text": "一般用医薬品の販売では、購入者からの相談に適切に対応することが重要である。", "explanation": "相談対応は重要です。"}, {"no": 23, "chapter": "第4章", "source": "改題", "answer": "○", "text": "アセトアミノフェンは、解熱鎮痛成分として用いられる。", "explanation": "代表的な解熱鎮痛成分です。"}, {"no": 24, "chapter": "第4章", "source": "改題", "answer": "○", "text": "ロペラミドは止瀉成分である。", "explanation": "止瀉成分です。"}, {"no": 25, "chapter": "第4章", "source": "改題", "answer": "○", "text": "クロルフェニラミンマレイン酸塩は抗ヒスタミン成分である。", "explanation": "抗ヒスタミン成分です。"}, {"no": 26, "chapter": "第4章", "source": "改題", "answer": "○", "text": "センノシドは便秘薬成分として用いられる。", "explanation": "大腸刺激性瀉下成分です。"}, {"no": 27, "chapter": "第5章", "source": "改題", "answer": "○", "text": "医薬品の副作用が疑われる場合には、必要に応じて医療機関の受診を勧める。", "explanation": "受診勧奨が必要な場合があります。"}, {"no": 28, "chapter": "第5章", "source": "改題", "answer": "×", "text": "一般用医薬品は、症状が改善しなくても長期間自己判断で使用し続けることが望ましい。", "explanation": "漫然使用せず受診勧奨が必要です。"}, {"no": 29, "chapter": "第5章", "source": "改題", "answer": "○", "text": "添付文書は、安全に使用するための重要な情報源である。", "explanation": "安全使用の重要情報源です。"}, {"no": 30, "chapter": "第5章", "source": "改題", "answer": "○", "text": "副作用情報は、医薬品の適正使用に役立てられる。", "explanation": "安全対策に活用されます。"}]}, {"id": "day-001-set-2", "title": "第2セット", "note": "未登録", "questions": []}, {"id": "day-001-set-3", "title": "第3セット", "note": "未登録", "questions": []}, {"id": "day-001-set-4", "title": "第4セット", "note": "未登録", "questions": []}]}]};
+const APP_VERSION="v14.3.6",BUILD_DATE="2026-07-28";
+const P="touhan2026",DATA_URL="./data/questions.json",SHORT_EXPLANATION_DB_URL="./data/tkdb-runtime.json",LOGIN="touhan_login_v8",STORE="touhan_answers_v8",CUSTOM="touhan_custom_exams_v8",CUSTOM_TRASH="touhan_custom_exams_trash_v1",HIDDEN_BUILTIN="touhan_hidden_builtin_v1",DELETE_BACKUP="touhan_delete_backup_v2",TIMER_STORE="touhan_timer_v10",SESSION_STORE="touhan_session_v12",WRONG_STORE="touhan_wrong_v12",EXPLANATION_STORE="touhan_detailed_explanations_v1",FULL_BACKUP_STORE="touhan_full_backup_v1",LAST_EXPORT_STORE="touhan_last_export_v1",TKDB_PATCH_STORE="touhan_tkdb_pending_patches_v1",EMBED={"meta": {"appName": "登録販売者 試験対策", "version": "14.3.6", "examDates": [{"label": "第1回試験", "date": "2026-08-26"}, {"label": "第2回試験", "date": "2026-09-06"}], "today": {"examId": "day-001", "setId": "day-001-set-1"}}, "exams": [{"id": "day-001", "title": "第1回", "date": "2026/07/04", "sets": [{"id": "day-001-set-1", "title": "第1セット", "note": "全120問中 1/4", "questions": [{"no": 1, "chapter": "第1章", "source": "改題", "answer": "×", "text": "医薬品は、期待される薬効のみをもたらし、有害作用を生じることはない。", "explanation": "医薬品には副作用等の有害作用が起こり得ます。"}, {"no": 2, "chapter": "第1章", "source": "改題", "answer": "○", "text": "一般用医薬品であっても、市販後に有効性や安全性に関する情報が集積され、必要に応じて見直しが行われる。", "explanation": "市販後も安全性情報が収集されます。"}, {"no": 3, "chapter": "第1章", "source": "改題", "answer": "×", "text": "一般用医薬品は、医療用医薬品よりも保健衛生上のリスクが高い。", "explanation": "一般用医薬品は相対的にリスクが低いものです。"}, {"no": 4, "chapter": "第1章", "source": "改題", "answer": "○", "text": "セルフメディケーションとは、軽度な身体の不調について、自らの判断で適切に一般用医薬品等を利用する考え方である。", "explanation": "軽度な不調の自己管理を指します。"}, {"no": 5, "chapter": "第1章", "source": "改題", "answer": "×", "text": "一般用医薬品は、添付文書を確認せず経験だけで使用しても問題ない。", "explanation": "添付文書確認が重要です。"}, {"no": 6, "chapter": "第2章", "source": "改題", "answer": "○", "text": "胃液中の塩酸には、タンパク質の消化を助ける働きがある。", "explanation": "胃酸はタンパク質消化に関与します。"}, {"no": 7, "chapter": "第2章", "source": "改題", "answer": "○", "text": "小腸は栄養素の吸収に重要な役割を果たす。", "explanation": "小腸は吸収の中心です。"}, {"no": 8, "chapter": "第2章", "source": "改題", "answer": "○", "text": "肝臓は胆汁を産生する。", "explanation": "胆汁は肝臓で産生されます。"}, {"no": 9, "chapter": "第2章", "source": "改題", "answer": "○", "text": "腎臓は老廃物の排泄だけでなく、水分や電解質の調節にも関与する。", "explanation": "腎臓は体液調節に関与します。"}, {"no": 10, "chapter": "第2章", "source": "改題", "answer": "×", "text": "心臓は静脈血のみを全身へ送り出している。", "explanation": "左心室は動脈血を全身へ送ります。"}, {"no": 11, "chapter": "第3章", "source": "改題", "answer": "○", "text": "第一類医薬品は、販売時に薬剤師による情報提供が義務付けられている。", "explanation": "第一類は薬剤師対応です。"}, {"no": 12, "chapter": "第3章", "source": "改題", "answer": "×", "text": "要指導医薬品は、インターネット販売できる。", "explanation": "要指導医薬品は対面販売です。"}, {"no": 13, "chapter": "第3章", "source": "改題", "answer": "○", "text": "登録販売者は、第二類医薬品及び第三類医薬品を販売できる。", "explanation": "第二類・第三類を扱えます。"}, {"no": 14, "chapter": "第3章", "source": "改題", "answer": "○", "text": "指定第二類医薬品は、陳列方法に一定の基準が設けられている。", "explanation": "陳列に配慮が必要です。"}, {"no": 15, "chapter": "第3章", "source": "改題", "answer": "○", "text": "医薬品の広告では、虚偽又は誇大な表現は禁止されている。", "explanation": "虚偽・誇大広告は禁止です。"}, {"no": 16, "chapter": "第3章", "source": "改題", "answer": "○", "text": "医薬品販売業者には、苦情処理体制の整備が求められる。", "explanation": "相談・苦情対応が必要です。"}, {"no": 17, "chapter": "第3章", "source": "改題", "answer": "×", "text": "配置販売業では、店舗を設ける必要がある。", "explanation": "配置販売は家庭等へ配置する形態です。"}, {"no": 18, "chapter": "第3章", "source": "改題", "answer": "○", "text": "登録販売者は、一定の実務・業務経験等の要件を満たせば店舗管理者になれる場合がある。", "explanation": "管理者要件を満たせば可能です。"}, {"no": 19, "chapter": "第3章", "source": "改題", "answer": "×", "text": "第一類医薬品は、すべて登録販売者のみが販売できる。", "explanation": "第一類は薬剤師です。"}, {"no": 20, "chapter": "第3章", "source": "改題", "answer": "○", "text": "医薬品副作用被害救済制度は、一定の条件を満たした場合に給付対象となる。", "explanation": "一定条件で救済対象です。"}, {"no": 21, "chapter": "第3章", "source": "改題", "answer": "×", "text": "一般用医薬品は、承認後は安全性の再評価が行われない。", "explanation": "承認後も評価されます。"}, {"no": 22, "chapter": "第3章", "source": "改題", "answer": "○", "text": "一般用医薬品の販売では、購入者からの相談に適切に対応することが重要である。", "explanation": "相談対応は重要です。"}, {"no": 23, "chapter": "第4章", "source": "改題", "answer": "○", "text": "アセトアミノフェンは、解熱鎮痛成分として用いられる。", "explanation": "代表的な解熱鎮痛成分です。"}, {"no": 24, "chapter": "第4章", "source": "改題", "answer": "○", "text": "ロペラミドは止瀉成分である。", "explanation": "止瀉成分です。"}, {"no": 25, "chapter": "第4章", "source": "改題", "answer": "○", "text": "クロルフェニラミンマレイン酸塩は抗ヒスタミン成分である。", "explanation": "抗ヒスタミン成分です。"}, {"no": 26, "chapter": "第4章", "source": "改題", "answer": "○", "text": "センノシドは便秘薬成分として用いられる。", "explanation": "大腸刺激性瀉下成分です。"}, {"no": 27, "chapter": "第5章", "source": "改題", "answer": "○", "text": "医薬品の副作用が疑われる場合には、必要に応じて医療機関の受診を勧める。", "explanation": "受診勧奨が必要な場合があります。"}, {"no": 28, "chapter": "第5章", "source": "改題", "answer": "×", "text": "一般用医薬品は、症状が改善しなくても長期間自己判断で使用し続けることが望ましい。", "explanation": "漫然使用せず受診勧奨が必要です。"}, {"no": 29, "chapter": "第5章", "source": "改題", "answer": "○", "text": "添付文書は、安全に使用するための重要な情報源である。", "explanation": "安全使用の重要情報源です。"}, {"no": 30, "chapter": "第5章", "source": "改題", "answer": "○", "text": "副作用情報は、医薬品の適正使用に役立てられる。", "explanation": "安全対策に活用されます。"}]}, {"id": "day-001-set-2", "title": "第2セット", "note": "未登録", "questions": []}, {"id": "day-001-set-3", "title": "第3セット", "note": "未登録", "questions": []}, {"id": "day-001-set-4", "title": "第4セット", "note": "未登録", "questions": []}]}]};
 let data,builtinExams=[],examId,setId,index=0,examMode=false,timer=null,view="normal",viewList=null,wrongMock=false;
 let activeCategory="one_by_one";
 let manageFilter="custom",manageSort="new",manageSearch="";
@@ -99,6 +99,29 @@ function repairMalformedQuestion(q){
     q.explanation=q.shortExplanation;
     q.repaired=true;
     q.repairNote="ショック（アナフィラキシー）の主語欠落を自動補修";
+  }
+
+  // 東京都2024年度 問19の記述aを一問一答化した際、主題「HIV訴訟」が欠落し、
+  // OCR由来で「血友病患者」が「悪性貧血患者」になったデータを補修する。
+  if(/^悪性貧血患者が[、,]\\s*HIVが混入した原料血漿から製造された血液凝固因子製剤の投与を受けたことにより[、,]\\s*HIVに感染したことに対する損害賠償訴訟である[。.]?$/.test(raw)
+    || /^血友病患者が[、,]\\s*HIVが混入した原料血漿から製造された血液凝固因子製剤の投与を受けたことにより[、,]\\s*HIVに感染したことに対する損害賠償訴訟である[。.]?$/.test(raw)){
+    q.text="HIV訴訟は、血友病患者が、HIVが混入した原料血漿から製造された血液凝固因子製剤の投与を受けたことにより、HIVに感染したことに対する損害賠償訴訟である。";
+    q.answer="○";
+    q.correctAnswer="○";
+    q.shortExplanation="HIV訴訟は、HIVが混入した血液凝固因子製剤の投与により血友病患者がHIVに感染したことに対する損害賠償訴訟です。";
+    q.explanation=q.shortExplanation;
+    q.repaired=true;
+    q.repairNote="HIV訴訟の主題欠落および患者名のOCR誤りを自動補修";
+  }
+  // 東京都2022年度 問115の記述aを一問一答化した際、主題「緊急安全性情報」が欠落したデータを補修する。
+  if(/^厚生労働省からの命令[、,]\\s*指示[、,]\\s*製造販売業者の自主決定等に基づいて作成される[。.]?$/.test(raw)){
+    q.text="緊急安全性情報は、厚生労働省からの命令、指示、製造販売業者の自主決定等に基づいて作成される。";
+    q.answer="○";
+    q.correctAnswer="○";
+    q.shortExplanation="緊急安全性情報は、厚生労働省からの命令・指示や、製造販売業者の自主決定等に基づいて作成されます。";
+    q.explanation=q.shortExplanation;
+    q.repaired=true;
+    q.repairNote="緊急安全性情報の主題欠落を自動補修";
   }
   return q;
 }
@@ -445,7 +468,7 @@ function buildLearningState(){
     });
   }));
   const explanationRecords=tkdbPendingPatches.map(x=>({...x}));
-  return {type:"touhan_learning_state",schemaVersion:"1.2",generatedAt:new Date().toISOString(),sourceAppVersion:"14.3.4",priorityPolicy:"unseen > wrong_or_unknown > uncertain > seen",questionCount:Object.keys(map).length,questions:Object.values(map),tkdbExplanationUpdates:{type:"touhan_tkdb_explanation_updates",schemaVersion:"1.0",recordCount:explanationRecords.length,records:explanationRecords}};
+  return {type:"touhan_learning_state",schemaVersion:"1.2",generatedAt:new Date().toISOString(),sourceAppVersion:"14.3.6",priorityPolicy:"unseen > wrong_or_unknown > uncertain > seen",questionCount:Object.keys(map).length,questions:Object.values(map),tkdbExplanationUpdates:{type:"touhan_tkdb_explanation_updates",schemaVersion:"1.0",recordCount:explanationRecords.length,records:explanationRecords}};
 }
 function updateLearningStateSummary(){const e=$("learningStateSummary");if(!e)return;const x=buildLearningState(),wrong=x.questions.filter(q=>q.wrongCount>0).length,unknown=x.questions.filter(q=>q.unknownCount>0).length,uncertain=x.questions.filter(q=>q.uncertainCount>0).length;e.textContent=`記録 ${x.questionCount}問｜誤答あり ${wrong}問｜分からない ${unknown}問｜迷った ${uncertain}問`;}
 function openJsonWorkspaceView(name="menu"){
@@ -605,7 +628,7 @@ function queueTkdbPatch(q,d,item,e,se){
   return true;
 }
 function applyExplanationResult(r){if(r.type!=="touhan_explanation_result"||!Array.isArray(r.explanations))throw new Error("解説JSON形式が正しくありません");const e=(data.exams||[]).find(x=>x.id===(r.examId||examId));if(!e)throw new Error("対象の問題回が見つかりません");const se=(e.sets||[]).find(x=>x.id===(r.setId||setId));if(!se)throw new Error("対象のセットが見つかりません");let count=0;r.explanations.forEach(item=>{const q=(se.questions||[]).find(x=>(item.knowledgeId&&String(x.knowledge_id||x.knowledgeId||"")===String(item.knowledgeId))||String(x.no)===String(item.no));if(!q)return;const d=normalizeDetailedItem(item);if(!d.detailedExplanation&&!d.correctKnowledge&&!d.commonTrap&&!d.memoryTip&&!d.relatedKnowledge)return;detailedExplanations[explanationKey(e,se,q)]=d;queueTkdbPatch(q,d,item,e,se);count++});saveDetailedExplanations();render();toast(`詳しい解説を${count}問に追加しました。学習状況JSONにも自動で含まれます`);return count}
-function buildTkdbPatch(){return {type:"touhan_tkdb_explanation_patch",schemaVersion:"1.0",patchId:`patch-${new Date().toISOString().replace(/[:.]/g,"-")}`,generatedAt:new Date().toISOString(),sourceAppVersion:"14.3.4",recordCount:tkdbPendingPatches.length,records:tkdbPendingPatches};}
+function buildTkdbPatch(){return {type:"touhan_tkdb_explanation_patch",schemaVersion:"1.0",patchId:`patch-${new Date().toISOString().replace(/[:.]/g,"-")}`,generatedAt:new Date().toISOString(),sourceAppVersion:"14.3.6",recordCount:tkdbPendingPatches.length,records:tkdbPendingPatches};}
 function exportTkdbPatch(){if(!tkdbPendingPatches.length){toast("TKDBへ追加する詳しい解説はありません");return;}downloadJsonFile(`touhan_tkdb_patch_${today().replaceAll("/","")}.json`,buildTkdbPatch());toast(`${tkdbPendingPatches.length}件のTKDB追加分を書き出しました`);}
 function clearTkdbPatchQueue(){if(!tkdbPendingPatches.length)return;if(!confirm("TKDB追加候補を全消去しますか？ 統合済みファイルを書き出した後に実行してください。"))return;tkdbPendingPatches=[];localStorage.setItem(TKDB_PATCH_STORE,"[]");toast("TKDB追加候補を消去しました");}
 function importExplanationJson(){try{const raw=$("explanationImportBox").value.trim();if(!raw)throw new Error("解説JSONを貼り付けてください");applyExplanationResult(JSON.parse(raw))}catch(e){alert(e.message||"解説JSONの形式が正しくありません")}}
@@ -643,9 +666,32 @@ function isSourceOrYearLabel(value){
   return /^(?:(?:東京都|北海道|(?:京都|大阪)府|.{2,3}県)?\s*)?(?:19|20)\d{2}(?:年(?:度)?)?(?:\s*(?:午前|午後|前半|後半))?$/.test(v)
     || /^(?:東京都|北海道|(?:京都|大阪)府|.{2,3}県)(?:\s*(?:19|20)\d{2}(?:年(?:度)?)?)?$/.test(v);
 }
+function sourceQuestionIdCandidates(q){
+  const out=[];const add=v=>{const x=String(v||"").trim();if(x&&!out.includes(x))out.push(x)};
+  add(q?.source_question_id);add(q?.sourceQuestionId);
+  [q?.knowledge_id,q?.knowledgeId].forEach(v=>{const x=String(v||"").trim();add(x);add(x.replace(/_[a-z]$/i,""))});
+  const src=String(q?.source||"");
+  const m=src.match(/東京都\s*(20\d{2})年度?\s*問\s*(\d+)/);
+  if(m)add(`tokyo_${m[1]}_${String(Number(m[2])).padStart(3,"0")}`);
+  return out;
+}
+function officialTopicInfoFromQuestion(q){
+  const qmap=shortExplanationMaster?.questionMap||{},topics=shortExplanationMaster?.officialTopics||{};
+  for(const id of sourceQuestionIdCandidates(q)){
+    const topicId=qmap[id]?.officialTopicId;
+    if(topicId&&topics[topicId])return topics[topicId];
+  }
+  return null;
+}
+function isLegacyThemeLabel(value){
+  const v=String(value||"").trim();
+  return /^第[1-5]章の要点(?:\s+[^\s]+)?$/.test(v)||/^要点(?:\s+[^\s]+)?$/.test(v)||/^[A-Z]{0,4}[-_:]?\d{2,}$/i.test(v);
+}
 function themeLabelFromQuestion(q){
+  const official=officialTopicInfoFromQuestion(q);
+  if(official?.label)return official.label;
   const explicit=String(q?.theme||q?.knowledgeTheme||q?.knowledge_name||"").trim();
-  if(explicit&&!isSourceOrYearLabel(explicit))return explicit;
+  if(explicit&&!isSourceOrYearLabel(explicit)&&!isLegacyThemeLabel(explicit))return explicit;
   const t=String(q?.text||"").replace(/\s+/g," ");
   const patterns=[
     [/アセトアミノフェン/,"アセトアミノフェンの使用条件"],[/アスピリン|サリチル酸/,"アスピリンとライ症候群"],[/イブプロフェン/,"イブプロフェンの使用条件"],
@@ -660,7 +706,7 @@ function themeLabelFromQuestion(q){
   if(key)return `${q?.chapter||"知識"}の要点 ${key.split(/[-_:]/).slice(-1)[0]}`;
   return t.replace(/[。．].*$/,'').slice(0,28)||"知識テーマ";
 }
-function reviewCategoryFromQuestion(q){const explicit=String(q?.reviewCategory||q?.review_category||q?.categoryName||"").trim();if(explicit&&!isSourceOrYearLabel(explicit))return explicit;const ch=String(q?.chapter||""),t=`${q?.text||""} ${q?.knowledge_id||q?.knowledgeId||""}`;const rules={
+function reviewCategoryFromQuestion(q){const official=officialTopicInfoFromQuestion(q);if(official?.officialPath?.length>1)return official.officialPath.length>2?official.officialPath[official.officialPath.length-2]:official.officialPath[0];const explicit=String(q?.reviewCategory||q?.review_category||q?.categoryName||"").trim();if(explicit&&!isSourceOrYearLabel(explicit)&&!isLegacyThemeLabel(explicit))return explicit;const ch=String(q?.chapter||""),t=`${q?.text||""} ${q?.knowledge_id||q?.knowledgeId||""}`;const rules={
 "第1章":[[/副作用/,"副作用"],[/相互作用|併用/,"相互作用"],[/小児|乳児|高齢者|妊婦|授乳/,"年齢・生活者別"],[/プラセボ|薬害|医薬品の本質/,"医薬品の基本"]],
 "第2章":[[/胃|腸|肝|胆|膵|消化/,"消化器"],[/肺|気管|呼吸/,"呼吸器"],[/心臓|血管|血圧|血液|HDL|LDL/,"循環器・血液"],[/脳|神経|交感神経|副交感神経/,"神経系"],[/眼|目|耳|鼻/,"目・耳・鼻"],[/皮膚|毛|汗腺/,"皮膚"],[/腎|尿|膀胱/,"腎臓・泌尿器"],[/免疫|内分泌|ホルモン/,"内分泌・免疫"]],
 "第3章":[[/かぜ|総合感冒/,"かぜ薬"],[/解熱|鎮痛|アセトアミノフェン|アスピリン|イブプロフェン/,"解熱鎮痛薬"],[/鎮咳|去痰|せき|たん/,"鎮咳去痰薬"],[/胃腸|制酸|健胃|消化|止瀉|瀉下|便秘|浣腸/,"胃腸薬・便秘薬"],[/漢方|葛根湯|香蘇散|小柴胡湯|防風通聖散/,"漢方処方"],[/生薬/,"生薬"],[/鼻炎|抗ヒスタミン|アレルギー/,"鼻炎・アレルギー用薬"],[/眼科|点眼|目薬/,"眼科用薬"],[/皮膚|外用|軟膏|みずむし|虫刺され/,"皮膚用薬"],[/婦人|月経/,"婦人薬"],[/強心|コレステロール|貧血/,"循環器・滋養強壮"],[/禁煙|ニコチン/,"禁煙補助剤"]],
@@ -793,7 +839,7 @@ function restoreAllBuiltin(){if(!hiddenBuiltin.exams.length&&!Object.keys(hidden
 function restoreLastDeleted(){try{let x=JSON.parse(localStorage.getItem(DELETE_BACKUP)||localStorage.getItem(CUSTOM_TRASH)||"null");if(!x){toast("復元できる削除履歴がありません");return;}if(!confirm(`${x.reason||"削除前"}（${x.savedAt||""}）の状態へ戻しますか？\n問題データと回答履歴を削除直前の状態へ戻します。`))return;if(Array.isArray(x.customExams))custom=x.customExams.map(normalizeExam);if(x.hiddenBuiltin)hiddenBuiltin=x.hiddenBuiltin;if(x.answers)store=x.answers;save();saveC();saveHiddenBuiltin();rebuildData();chooseSafeExam();selectors();refreshManageUi("削除前の状態へ復元しました")}catch(e){alert("復元に失敗しました")}}
 function buildFullBackup(reason="手動バックアップ"){
   return {
-    type:"touhan_full_backup",schemaVersion:"1.0",appVersion:"14.3.4",
+    type:"touhan_full_backup",schemaVersion:"1.0",appVersion:"14.3.5",
     createdAt:new Date().toISOString(),reason,
     data:{answers:store,customExams:custom,hiddenBuiltin,detailedExplanations,wrongMeta,
       timerState:safeReadJson(TIMER_STORE,null),session:safeReadJson(SESSION_STORE,null),
@@ -803,7 +849,7 @@ function buildFullBackup(reason="手動バックアップ"){
 function saveAutoBackup(reason="自動バックアップ"){
   // 問題本文と詳しい解説を丸ごと複製するとiPhoneのlocalStorage上限を圧迫するため、
   // 自動バックアップは学習履歴中心の軽量版にする。完全版は手動書き出しで保持する。
-  const light={type:"touhan_auto_backup",schemaVersion:"1.1",appVersion:"14.3.4",createdAt:new Date().toISOString(),reason,
+  const light={type:"touhan_auto_backup",schemaVersion:"1.1",appVersion:"14.3.5",createdAt:new Date().toISOString(),reason,
     data:{answers:store,hiddenBuiltin,wrongMeta,timerState:safeReadJson(TIMER_STORE,null),session:safeReadJson(SESSION_STORE,null)}};
   try{setStorageWithRecovery(FULL_BACKUP_STORE,JSON.stringify(light))}catch(e){console.warn("自動バックアップに失敗",e)}
 }

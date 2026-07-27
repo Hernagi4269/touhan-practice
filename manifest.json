@@ -1,7 +1,7 @@
 {
   "name": "登録販売者 試験対策",
   "short_name": "登販",
-  "start_url": "./?v=14.3.4",
+  "start_url": "./?v=14.3.6",
   "display": "standalone",
   "background_color": "#f5f6f8",
   "theme_color": "#111827",
@@ -19,5 +19,5 @@
       "purpose": "any maskable"
     }
   ],
-  "version": "14.3.4"
+  "version": "14.3.6"
 }
