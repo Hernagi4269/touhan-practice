@@ -6,10 +6,10 @@
 <meta name="theme-color" content="#111827">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="登販">
-<link rel="manifest" href="./manifest.json?v=14.2.0">
+<link rel="manifest" href="./manifest.json?v=14.3.1">
 <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
-<link rel="stylesheet" href="./style.css?v=14.2.0">
-<title>登録販売者 試験対策 v14.2.0</title>
+<link rel="stylesheet" href="./style.css?v=14.3.1">
+<title>登録販売者 試験対策 v14.3.1</title>
 </head>
 <body>
 <div id="login" class="screen">
@@ -66,26 +66,27 @@
 </section>
 
 <section id="solve" class="page hidden">
-  <details id="problemSelectorDetails" class="card problemSelectorDetails">
-    <summary><span>問題を選択</span><small id="problemSelectorSummary">カテゴリ・回・セットを変更</small></summary>
-    <div class="problemSelectorBody">
+  <div class="studyCommandCard">
+    <div class="studyCommandTop">
+      <div><span class="eyebrow">現在の学習</span><strong id="currentSelectionLabel">選択中の問題</strong></div>
+      <button id="toggleProblemSelector" class="selectorToggle" aria-expanded="false">変更</button>
+    </div>
+    <div class="studyProgressLine"><span id="qProgress"></span><span id="unanswered"></span></div>
+    <div id="problemSelectorPanel" class="problemSelectorPanel hidden">
       <div class="selectors selectors3">
         <label>カテゴリ<select id="categorySelect"></select></label>
         <label>回<select id="examSelect"></select></label>
         <label>セット<select id="setSelect"></select></label>
       </div>
-      <div class="problemModeField">
-        <span class="problemModeLabel">出題形式</span>
-        <div class="modes compactModes">
-          <button id="normalModeBtn" class="subBtn">通常</button>
-          <button id="weakModeBtn" class="subBtn">苦手だけ</button>
-          <button id="randomModeBtn" class="subBtn">ランダム</button>
-        </div>
+      <div class="studyModeRow">
+        <button id="normalModeBtn" class="modePill active">通常</button>
+        <button id="weakModeBtn" class="modePill">苦手</button>
+        <button id="randomModeBtn" class="modePill">ランダム</button>
       </div>
-      <input id="searchBox" placeholder="問題検索（例：アセトアミノフェン）">
+      <div id="chapterQuickFilter" class="chapterQuickFilter"></div>
+      <input id="searchBox" class="studySearch" placeholder="問題を検索">
     </div>
-  </details>
-  <div class="card solveStatusCompact"><div id="currentSelectionLabel" class="selectionContext">選択中の問題</div><div class="bar"><span id="qProgress"></span><span id="unanswered"></span></div></div>
+  </div>
 
   <div id="empty" class="card hidden"><h2>このセットは未登録です</h2><p class="note">追加タブから問題JSONを取り込んでください。</p></div>
   <div id="questionCard" class="card questionFocusCard"></div>
@@ -106,9 +107,22 @@
 
 
 <section id="wrong" class="page hidden">
-  <div class="card"><div class="homeCardHead"><h2>復習</h2><span id="wrongCount" class="categoryBadge">0項目</span></div><p class="note">成績表ではなく、次に復習する知識へ進むための画面です。</p></div>
-  <button id="openKnowledgeReview" class="card workspaceMenuButton"><div><b>知識テーマ別復習</b><small>章 → 知識テーマ → 関連問題</small></div><span>›</span></button>
-  <button id="openWeakReview" class="card workspaceMenuButton"><div><b>苦手復習</b><small>日付 → セット → 間違えた問題</small></div><span>›</span></button>
+  <div class="reviewHero">
+    <span class="eyebrow">復習キュー</span>
+    <div class="reviewHeroHead"><h2>今やるべき復習</h2><span id="wrongCount" class="reviewTotalBadge">0項目</span></div>
+    <p>迷わず開始できるよう、期限・誤答・迷った問題を自動で整理します。</p>
+  </div>
+  <div class="reviewPrimaryGrid">
+    <button id="startTodayReview" class="reviewPrimaryCard reviewDueCard">
+      <span>今日の復習</span><strong id="todayReviewCount">0問</strong><small>期限が来た問題を出題</small>
+    </button>
+    <button id="startUnmasteredReview" class="reviewPrimaryCard">
+      <span>未克服だけ</span><strong id="unmasteredReviewCount">0問</strong><small>誤答後、定着確認前の問題</small>
+    </button>
+  </div>
+  <div class="reviewMenuLabel">詳しく選ぶ</div>
+  <button id="openKnowledgeReview" class="reviewMenuCard"><div><b>知識テーマ別</b><small>章とテーマから弱点を確認</small></div><span>›</span></button>
+  <button id="openWeakReview" class="reviewMenuCard"><div><b>誤答履歴</b><small>日付とセットから振り返る</small></div><span>›</span></button>
 </section>
 
 <section id="knowledgeReviewPage" class="reviewDetailPage hidden" aria-hidden="true">
@@ -242,7 +256,7 @@
 </section>
 <section id="settings" class="page hidden">
   <div class="card"><h2>設定</h2><button id="resetSet" class="subBtn">現在の回答をリセット</button><button id="resetAll" class="dangerBtn">回答履歴を全削除</button></div>
-  <div class="card"><h2>バージョン</h2><div class="versionBox">Version <b id="appVersion">v14.2.0</b><br>Build <b id="appBuild">2026-07-26</b></div></div>
+  <div class="card"><h2>バージョン</h2><div class="versionBox">Version <b id="appVersion">v14.3.1</b><br>Build <b id="appBuild">2026-07-26</b></div></div>
 </section>
 
 </main>
@@ -266,6 +280,6 @@
   </div>
 </div>
 
-<script src="./app.js?v=14.2.0"></script>
+<script src="./app.js?v=14.3.1"></script>
 </body>
 </html>

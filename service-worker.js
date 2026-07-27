@@ -1,11 +1,61 @@
-const CACHE="touhan-practice-v14.2.0";
-const ASSETS=["./","./index.html?v=14.2.0","./style.css?v=14.2.0","./app.js?v=14.2.0","./manifest.json?v=14.2.0","./icon.svg","./icon-192.png","./icon-512.png","./apple-touch-icon.png","./data/questions.json","./data/tkdb-runtime.json","./version.json"];
-self.addEventListener("install",e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)));self.skipWaiting()});
-self.addEventListener("activate",e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))));self.clients.claim()});
-self.addEventListener("message",e=>{if(e.data&&e.data.type==="SKIP_WAITING")self.skipWaiting()});
-self.addEventListener("fetch",e=>{
-  if(e.request.method!=="GET")return;
-  const url=new URL(e.request.url);
-  if(url.origin!==self.location.origin)return;
-  e.respondWith(fetch(e.request,{cache:"no-store"}).then(r=>{const x=r.clone();caches.open(CACHE).then(c=>c.put(e.request,x));return r}).catch(()=>caches.match(e.request)));
+const CACHE = "touhan-practice-v14.3.1";
+const STATIC_ASSETS = [
+  "./style.css?v=14.3.1",
+  "./app.js?v=14.3.1",
+  "./manifest.json?v=14.3.1",
+  "./icon.svg",
+  "./icon-192.png",
+  "./icon-512.png",
+  "./apple-touch-icon.png",
+  "./data/questions.json",
+  "./data/tkdb-runtime.json",
+  "./version.json"
+];
+
+self.addEventListener("install", event => {
+  event.waitUntil(
+    caches.open(CACHE)
+      .then(cache => cache.addAll(STATIC_ASSETS))
+      .then(() => self.skipWaiting())
+  );
+});
+
+self.addEventListener("activate", event => {
+  event.waitUntil(
+    caches.keys()
+      .then(keys => Promise.all(keys.filter(key => key !== CACHE).map(key => caches.delete(key))))
+      .then(() => self.clients.claim())
+  );
+});
+
+self.addEventListener("message", event => {
+  if (event.data?.type === "SKIP_WAITING") self.skipWaiting();
+});
+
+self.addEventListener("fetch", event => {
+  if (event.request.method !== "GET") return;
+  const url = new URL(event.request.url);
+  if (url.origin !== self.location.origin) return;
+
+  // Navigation/HTML must always prefer the current GitHub Pages version.
+  if (event.request.mode === "navigate" || event.request.destination === "document") {
+    event.respondWith(
+      fetch(event.request, { cache: "no-store" })
+        .catch(() => caches.match("./index.html") || caches.match("./"))
+    );
+    return;
+  }
+
+  // Static assets: network first, cached fallback.
+  event.respondWith(
+    fetch(event.request, { cache: "no-store" })
+      .then(response => {
+        if (response && response.ok) {
+          const copy = response.clone();
+          caches.open(CACHE).then(cache => cache.put(event.request, copy));
+        }
+        return response;
+      })
+      .catch(() => caches.match(event.request))
+  );
 });
