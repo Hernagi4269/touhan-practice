@@ -1,6 +1,0 @@
-v14.0.0 TKDB統合
-- TKDB runtimeを短い解説・詳しい解説の優先参照元に変更
-- 詳しい解説JSON取込時にTKDB追加候補へ自動蓄積
-- touhan_tkdb_explanation_patch書出し機能を追加
-- 既存ローカル解説はTKDBより優先
-- 公式確認済み/レビュー待ちの状態を保持
