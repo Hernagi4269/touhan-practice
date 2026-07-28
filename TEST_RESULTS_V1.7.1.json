@@ -1,0 +1,13 @@
+{
+  "version": "1.7.1",
+  "staticChecks": {
+    "engine_1_7_1": true,
+    "no_explanation_fetch": true,
+    "raw_learning_support": true,
+    "wrong_meta_support": true,
+    "unknown_priority": true,
+    "tkdb_exists": true,
+    "old_explanation_removed": true
+  },
+  "allPassed": true
+}

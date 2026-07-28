@@ -1,0 +1,4 @@
+v1.6.0 Safety First
+- 詳細解説は safeToDisplayDetailedExplanation=true の場合だけ利用可能。
+- review_required は正誤のみ表示し、詳細解説・訂正文・誤り箇所は空。
+- 自動類似度を検証済み扱いしない。

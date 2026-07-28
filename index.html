@@ -1,285 +1,136 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#111827">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="登販">
-<link rel="manifest" href="./manifest.json?v=14.3.7">
-<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
-<link rel="stylesheet" href="./style.css?v=14.3.7">
-<title>登録販売者 試験対策 v14.3.7</title>
-</head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>登録販売者 過去問エンジン v2.0.0</title>
+<style>
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.7;margin:16px;}
+button{font-size:16px;padding:10px 12px;margin:4px;}
+input,select,textarea{width:100%;box-sizing:border-box;font-size:15px;margin:4px 0 10px;padding:8px;}
+input[type="date"]{display:block;width:100%;height:42px;min-height:42px;padding:8px;border:1px solid #cfcfcf;border-radius:4px;background:#fff;color:#111;font-family:inherit;font-size:15px;line-height:normal;box-sizing:border-box;-webkit-appearance:none;appearance:none;}
+input[type="date"]::-webkit-date-and-time-value{text-align:left;min-height:24px;}
+input[type="date"]::-webkit-calendar-picker-indicator{opacity:1;display:block;}
+@supports (-webkit-touch-callout:none){input[type="date"]{height:42px;min-height:42px;padding:8px;border:1px solid #cfcfcf;background-color:#fff;}}
+textarea{height:220px;font-family:ui-monospace,Menlo,monospace;font-size:12px;}
+.q{border-bottom:1px solid #ddd;padding:8px 0;}
+.err{color:#b00020;font-weight:bold;}
+.ok{color:#006600;font-weight:bold;}
+.card{border:1px solid #ddd;border-radius:10px;padding:12px;margin:10px 0;}
+.small{font-size:13px;color:#666;}
+
+.mode-tabs{display:flex;gap:8px;margin:16px 0}.mode-tab{background:#eee}.mode-tab.active,.primary{background:#1257c7;color:#fff}.hidden{display:none}.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.button-row{display:flex;flex-wrap:wrap;gap:6px}.file-label{display:block;margin-top:12px}.status-box{padding:10px;border-radius:8px;background:#f4f6f8;margin-top:10px}.status-box.ok{background:#e8f5e9;color:#145a1f}.status-box.err{background:#ffebee;color:#9a0015}.summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px}.summary-item{background:#f5f5f5;border-radius:8px;padding:10px}.summary-item b{display:block;font-size:20px}.large-json{height:360px}.hero-card{border-color:#b8c9e8}pre{white-space:pre-wrap;word-break:break-word}.data-card{padding:10px 12px}.data-card-head{display:flex;align-items:center;justify-content:space-between;gap:10px}.data-card-head h2{margin:0;font-size:18px}.data-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:8px}.data-item{display:flex;align-items:center;gap:9px;min-width:0;border:1px solid #e1e5ea;border-radius:9px;padding:8px 9px;background:#fafbfc}.data-icon{font-size:20px;line-height:1}.data-body{min-width:0;flex:1}.data-name{font-weight:700;font-size:14px}.data-status{font-size:12px;color:#667085;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.data-status.ready{color:#176b2c}.compact-btn{font-size:13px;padding:6px 9px;margin:0}.data-actions{display:flex;gap:6px;flex-wrap:wrap}.visually-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}@media(max-width:600px){.grid2{grid-template-columns:1fr}.data-grid{grid-template-columns:1fr}.data-card-head{align-items:flex-start}.data-actions{justify-content:flex-end}}
+.data-card{background:linear-gradient(180deg,#fff 0%,#fbfcfe 100%);box-shadow:0 1px 2px rgba(16,24,40,.04)}
+.data-card-head{min-height:32px}.data-card-head h2{display:flex;align-items:center;gap:7px}.data-card-head h2::before{content:"";width:8px;height:8px;border-radius:999px;background:#1257c7;box-shadow:0 0 0 4px rgba(18,87,199,.10)}
+.data-item{position:relative;transition:border-color .15s,background .15s}.data-item:hover{border-color:#c8d4e5;background:#fff}.data-item.is-ready{border-color:#cfe5d3;background:#f8fcf8}.data-item.is-warning{border-color:#ead8a6;background:#fffdf7}
+.data-status-line{display:flex;align-items:center;gap:6px;min-width:0}.status-dot{width:7px;height:7px;border-radius:999px;background:#98a2b3;flex:none}.status-dot.ready{background:#2e8b47}.status-dot.warning{background:#c88719}.status-dot.error{background:#b42318}
+.data-meta{font-size:11px;color:#98a2b3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:1px}.data-item-actions{display:flex;gap:4px;align-items:center}.icon-btn{font-size:13px;padding:5px 8px;margin:0;border:1px solid #d0d5dd;border-radius:7px;background:#fff;cursor:pointer}.icon-btn:hover{background:#f2f4f7}.icon-btn:disabled{opacity:.45;cursor:not-allowed}
+.data-details{margin-top:8px;border-top:1px solid #eaecf0;padding-top:8px}.data-details summary{font-size:12px;color:#667085;cursor:pointer;user-select:none}.data-details-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-top:7px}.data-detail{background:#f5f7fa;border-radius:7px;padding:6px 8px;font-size:11px;color:#667085}.data-detail b{display:block;color:#344054;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media(max-width:600px){.data-details-grid{grid-template-columns:1fr}.data-item-actions{align-self:stretch}.icon-btn{min-width:52px}}
+</style>
+<link rel="apple-touch-icon" href="./icon-192.png"><link rel="manifest" href="./manifest.webmanifest"></head>
 <body>
-<div id="login" class="screen">
-  <div class="loginBox">
-    <div class="logo">登販</div>
-    <h1>登録販売者<br>試験対策</h1>
-    <input id="pass" type="password" placeholder="パスワード">
-    <button id="loginBtn" class="mainBtn">開始</button>
-    <p class="small">初期パスワード：touhan2026</p>
-    <p id="loginErr" class="err hidden">パスワードが違います。</p>
-  </div>
-</div>
-
-<div id="app" class="hidden">
-<header>
-  <div><h1>登録販売者 試験対策</h1><p id="sub"></p></div>
-  <button id="lockBtn" class="smallBtn headerLogoutBtn">ログアウト</button>
-</header>
-
-<nav>
-  <button data-tab="home" class="active">ホーム</button>
-  <button data-tab="solve">問題</button>
-  <button data-tab="wrong">復習</button>
-  <button data-tab="stats">分析</button>
-  <button data-tab="data">データ</button>
-</nav>
-<button id="timerFab" class="timerFab" aria-label="タイマー"><span class="timerFabIcon">⏱</span><span id="timerFabTime" class="timerFabTime">30:00</span></button>
-<button id="settingsFab" class="settingsFab" aria-label="設定">⚙</button>
-
-<main>
-<section id="home" class="page">
-  <div class="card countdownCard">
-    <div class="homeCardHead"><h2>試験まで</h2><button id="getTodayJson" class="smallBtn homeJsonBtn">問題JSONを取得</button></div>
-    <div id="countdown" class="countdownGrid"></div>
-    <div id="examProgress" class="note"></div>
-  </div>
-
-
-  <div id="resumeCard" class="card resumeCard hidden">
-    <div><b>前回の続き</b><div id="resumeLabel" class="note"></div></div>
-    <button id="resumeStudy" class="mainBtn compactBtn">再開</button>
-  </div>
-
-  <div id="dueNotice" class="card notice hidden"></div>
-
-  <div class="card todayStatusCard">
-    <div class="homeCardHead"><h2>今日の問題</h2><div class="todayHeadStats"><span id="streak" class="streakChip">連続0日</span><span id="todayProgress" class="todayProgressBig">0/120</span></div></div>
-    <p id="todayLabel" class="todayLabel"></p>
-    <div id="todayExecutionStatus" class="todayExecutionStatus"></div>
-  </div>
-
-  <div class="card"><h3>次にやること</h3><div id="nextAction" class="note"></div></div>
-  <div class="card"><h3>学習カレンダー</h3><div id="studyCalendar" class="calendar"></div></div>
-</section>
-
-<section id="solve" class="page hidden">
-  <div class="studyCommandCard">
-    <div class="studyCommandTop">
-      <div><span class="eyebrow">現在の学習</span><strong id="currentSelectionLabel">選択中の問題</strong></div>
-      <button id="toggleProblemSelector" class="selectorToggle" aria-expanded="false">変更</button>
-    </div>
-    <div class="studyProgressLine"><span id="qProgress"></span><span id="unanswered"></span></div>
-    <div id="problemSelectorPanel" class="problemSelectorPanel hidden">
-      <div class="selectors selectors3">
-        <label>カテゴリ<select id="categorySelect"></select></label>
-        <label>回<select id="examSelect"></select></label>
-        <label>セット<select id="setSelect"></select></label>
-      </div>
-      <div class="studyModeRow">
-        <button id="normalModeBtn" class="modePill active">通常</button>
-        <button id="weakModeBtn" class="modePill">苦手</button>
-        <button id="randomModeBtn" class="modePill">ランダム</button>
-      </div>
-      <div id="chapterQuickFilter" class="chapterQuickFilter"></div>
-      <input id="searchBox" class="studySearch" placeholder="問題を検索">
-    </div>
-  </div>
-
-  <div id="empty" class="card hidden"><h2>このセットは未登録です</h2><p class="note">追加タブから問題JSONを取り込んでください。</p></div>
-  <div id="questionCard" class="card questionFocusCard"></div>
-
-  <div class="card">
-    <div class="pager"><button id="prevBtn">← 前へ</button><button id="nextBtn">次へ →</button></div>
-    <div id="jumpGrid" class="jumpGrid"></div>
-  </div>
-
-  <div class="card actionFlowCard">
-    <button id="gradeCurrent" class="mainBtn gradeActionBtn">採点・分析</button>
-    <p class="note actionFlowNote">採点後、正答率・章別結果・復習登録をアプリ内で反映します。</p>
-    <hr class="softRule">
-    <button id="copyCurrent" class="mainBtn">全問の詳しい解説JSONをコピー</button>
-    <button id="openChatGPT" class="subBtn">ChatGPTで詳しい解説</button>
-  </div>
-</section>
-
-
-<section id="wrong" class="page hidden">
-  <div class="reviewHero">
-    <span class="eyebrow">復習キュー</span>
-    <div class="reviewHeroHead"><h2>今やるべき復習</h2><span id="wrongCount" class="reviewTotalBadge">0項目</span></div>
-    <p>迷わず開始できるよう、期限・誤答・迷った問題を自動で整理します。</p>
-  </div>
-  <div class="reviewPrimaryGrid">
-    <button id="startTodayReview" class="reviewPrimaryCard reviewDueCard">
-      <span>今日の復習</span><strong id="todayReviewCount">0問</strong><small>期限が来た問題を出題</small>
-    </button>
-    <button id="startUnmasteredReview" class="reviewPrimaryCard">
-      <span>未克服だけ</span><strong id="unmasteredReviewCount">0問</strong><small>誤答後、定着確認前の問題</small>
-    </button>
-  </div>
-  <div class="reviewMenuLabel">詳しく選ぶ</div>
-  <button id="openKnowledgeReview" class="reviewMenuCard"><div><b>知識テーマ別</b><small>章とテーマから弱点を確認</small></div><span>›</span></button>
-  <button id="openWeakReview" class="reviewMenuCard"><div><b>誤答履歴</b><small>日付とセットから振り返る</small></div><span>›</span></button>
-</section>
-
-<section id="knowledgeReviewPage" class="reviewDetailPage hidden" aria-hidden="true">
-  <div class="reviewDetailHeader smartOverlayHeader">
-    <button id="knowledgeReviewBackBtn" class="overlayBackBtn" aria-label="前の画面へ戻る">←</button>
-    <div class="overlayTitleBlock"><h2 id="knowledgeReviewTitle">知識テーマ別復習</h2><div id="knowledgeReviewMeta" class="note"></div></div>
-  </div>
-  <div id="knowledgeReviewBody" class="reviewDetailBody"></div>
-  <button id="knowledgeReviewTopBtn" class="overlayTopFab" aria-label="ページ上部へ戻る">↑</button>
-</section>
-
-<section id="weakReviewPage" class="reviewDetailPage hidden" aria-hidden="true">
-  <div class="reviewDetailHeader smartOverlayHeader">
-    <button id="weakReviewBackBtn" class="overlayBackBtn" aria-label="前の画面へ戻る">←</button>
-    <div class="overlayTitleBlock"><h2 id="weakReviewTitle">苦手復習</h2><div id="weakReviewMeta" class="note">日付を選択してください</div></div>
-  </div>
-  <div id="weakReviewBody" class="reviewDetailBody"></div>
-  <button id="weakReviewTopBtn" class="overlayTopFab" aria-label="ページ上部へ戻る">↑</button>
-</section>
-
-<section id="reviewDetailPage" class="reviewDetailPage hidden" aria-hidden="true">
-  <div class="reviewDetailHeader smartOverlayHeader">
-    <button id="reviewBackBtn" class="overlayBackBtn" aria-label="前の画面へ戻る">←</button>
-    <div class="overlayTitleBlock"><h2 id="reviewDetailTitle">復習</h2><div id="reviewDetailMeta" class="note"></div></div>
-  </div>
-  <div id="reviewDetailBody" class="reviewDetailBody"></div>
-  <button id="reviewTopBtn" class="overlayTopFab" aria-label="ページ上部へ戻る">↑</button>
-</section>
-
-<section id="solveExplanationPage" class="reviewDetailPage hidden" aria-hidden="true">
-  <div class="reviewDetailHeader smartOverlayHeader">
-    <button id="closeSolveExplanation" class="overlayBackBtn" aria-label="問題画面へ戻る">←</button>
-    <div class="overlayTitleBlock"><h2 id="solveExplanationTitle">解説</h2><div id="solveExplanationMeta" class="note"></div></div>
-  </div>
-  <div id="solveExplanationBody" class="reviewDetailBody"></div>
-  <button id="solveExplanationTopBtn" class="overlayTopFab" aria-label="ページ上部へ戻る">↑</button>
-</section>
-
-<section id="jsonWorkspacePage" class="reviewDetailPage hidden" aria-hidden="true">
-  <div class="reviewDetailHeader smartOverlayHeader">
-    <button id="closeJsonWorkspace" class="overlayBackBtn" aria-label="データ画面へ戻る">←</button>
-    <div class="overlayTitleBlock"><h2 id="jsonWorkspaceTitle">JSON・学習データ</h2><div id="jsonWorkspaceMeta" class="note">項目を選択してください</div></div>
-  </div>
-  <div class="reviewDetailBody jsonWorkspaceBody">
-    <section id="jsonWorkspaceMenu">
-      <button class="card workspaceMenuButton" data-json-page="problem"><div><b>問題JSON</b><small>生成した問題をアプリへ追加</small></div><span>›</span></button>
-      <button class="card workspaceMenuButton" data-json-page="explanation"><div><b>詳しい解説JSON</b><small>解説依頼の出力・解説結果の取込</small></div><span>›</span></button>
-      <button class="card workspaceMenuButton" data-json-page="learning"><div><b>学習状況JSON</b><small>正誤・迷った・出題履歴・詳しい解説を生成エンジンへ渡す</small></div><span>›</span></button>
-    </section>
-    <section id="jsonWorkspaceProblem" class="hidden">
-      <div class="card">
-        <h3>問題JSON</h3>
-        <label>問題カテゴリ<select id="importCategorySelect"></select></label>
-        <textarea id="importBox" placeholder="ここに問題JSONを貼り付け"></textarea>
-        <div class="buttonRow"><button id="importJson" class="mainBtn">問題JSONを取り込み</button><button id="clearImportBox" class="subBtn">全消去</button></div>
-      </div>
-    </section>
-    <section id="jsonWorkspaceExplanation" class="hidden">
-      <div class="card">
-        <h3>詳しい解説JSON</h3>
-        <p class="note">ChatGPTから返されたJSONを読み込むと、復習画面と解説PDFへ反映されます。</p>
-        <div class="buttonRow"><button id="copyExplanationRequest" class="mainBtn">全問の解説依頼JSONをコピー</button><button id="downloadExplanationRequest" class="subBtn">解説依頼JSONを保存</button><button id="copyMissingExplanationRequest" class="subBtn">未取得だけコピー</button></div>
-        <textarea id="explanationImportBox" placeholder='{"type":"touhan_explanation_result",...}'></textarea>
-        <label class="filePickerLabel">解説JSONファイルを選択<input id="explanationFile" type="file" accept="application/json,.json"></label>
-        <div class="buttonRow"><button id="importExplanationJson" class="mainBtn">詳しい解説JSONを取り込み</button><button id="clearExplanationImportBox" class="subBtn">全消去</button></div>
-        <div class="buttonRow"><button id="exportTkdbPatch" class="mainBtn">TKDB追加分を書き出す</button><button id="clearTkdbPatchQueue" class="subBtn">追加候補を消去</button></div>
-        <p class="note">取り込んだ詳しい解説は端末内で即時利用され、同時にTKDB追加候補へ蓄積されます。書き出したパッチをTKDBの統合ツールへ渡すと正式DBへ反映できます。</p>
-      </div>
-    </section>
-    <section id="jsonWorkspaceLearning" class="hidden">
-      <div class="card">
-        <h3>学習状況JSON</h3>
-        <p class="note">採点済み問題の正誤、迷った記録、最終解答日時をまとめます。生成エンジンへ読み込ませると、未出題を最優先し、その次に誤答・迷った問題を優先できます。</p>
-        <div id="learningStateSummary" class="note"></div>
-        <div class="buttonRow"><button id="downloadLearningState" class="mainBtn">学習状況JSONを保存</button><button id="copyLearningState" class="subBtn">コピー</button></div>
-      </div>
-    </section>
-  </div>
-  <button id="jsonWorkspaceTopBtn" class="overlayTopFab" aria-label="ページ上部へ戻る">↑</button>
-</section>
-<section id="stats" class="page hidden">
-  <div class="card analysisHero"><h2>分析</h2><p class="note">成績の羅列ではなく、次に何を復習するかを決める画面です。</p></div>
-  <div class="card"><div class="homeCardHead"><h2>今日のフィードバック</h2><span id="todayFeedbackScore" class="categoryBadge">未採点</span></div><div id="todayActionFeedback" class="analysisActionBox"></div><button id="copyAutoFeedback" class="subBtn">フィードバックをコピー</button></div>
-  <div class="card"><div class="homeCardHead"><h2>要復習サマリー</h2><span id="reviewThemeCount" class="categoryBadge">0項目</span></div><div id="reviewSummary"></div></div>
-  <div class="card"><h2>問題DB消化率</h2><div id="questionCoverage"></div></div>
-  <div class="card"><h2>知識テーマ消化率</h2><div id="knowledgeCoverage"></div></div>
-  <div class="card"><div class="homeCardHead"><h2>学習履歴</h2><span class="note">日別平均</span></div><div id="dailyRateGraph"></div><div id="learningHistory"></div></div>
-</section>
-<section id="data" class="page hidden">
-  <div class="dataHero card">
+<h1>登録販売者 過去問エンジン v2.0.0</h1>
+<p class="small">問題DB・TKDB・学習状況を分離管理し、一問一答120問／総合演習60問／本番形式120問を生成します。</p><section class="mode-panel" id="generatorPanel">
+<div class="card data-card" id="dataCard">
+  <div class="data-card-head">
     <h2>データ</h2>
-    <p class="note">問題の追加・管理・教材出力・バックアップを、この画面にまとめています。</p>
-    <div class="dataQuickNav">
-      <a href="#dataImport">追加</a><a href="#dataManage">管理</a><a href="#dataPdf">PDF</a><a href="#dataBackup">バックアップ</a>
+    <div class="data-actions">
+      <button class="compact-btn" id="reloadDataBtn" type="button">再読込</button>
+      <button class="compact-btn" id="resetDataBtn" type="button">初期化</button>
     </div>
   </div>
-  <div id="dataImport" class="card dataSection dataLauncherCard">
-    <div class="dataLauncherText"><b>JSON入力・解説管理</b><small>問題追加、詳しい解説、学習状況</small></div>
-    <button id="openJsonWorkspace" class="mainBtn compactBtn">開く</button>
-  </div>
-  <div id="dataManage" class="card dataSection dataLauncherCard">
-    <div class="dataLauncherText"><b>問題データ管理</b><small>日付・カテゴリから選択して管理</small></div>
-    <button id="openManageWorkspace" class="mainBtn compactBtn">開く</button>
-  </div>
-  <details id="dataPdf" class="card dataSection">
-    <summary><span>問題PDF</span><small>教材として保存・共有</small></summary>
-    <div class="dataSectionBody"><p class="note">現在選択している問題回をPDF用ページで開きます。ページ上部の「PDF保存画面を開く」から保存し、「アプリに戻る」で戻れます。</p><div class="pdfActionGrid"><button id="printQuestionsOnly" class="subBtn">問題PDFを開く</button><button id="printQuestionsFull" class="mainBtn">問題＋解答＋解説PDFを開く</button></div><p class="note">詳しい解説が未取得の問題は、解説依頼JSONをChatGPTへ送り、返された詳しい解説JSONを読み込むと復習画面とPDFに反映されます。</p></div>
-  </details>
-  <details id="dataBackup" class="card dataSection">
-    <summary><span>バックアップ</span><small>端末移行・復元</small></summary>
-    <div class="dataSectionBody"><p class="note">学習履歴・追加問題・苦手復習・詳しい解説・削除状態をまとめて保存します。端末変更やURL変更の前に書き出してください。</p><button id="exportData" class="mainBtn">学習データを書き出す</button><button id="copyBackupData" class="subBtn">バックアップJSONをコピー</button><div id="backupStatus" class="note">書き出し履歴なし</div><label class="fileImportLabel">バックアップファイルを選択<input id="backupFile" type="file" accept="application/json,.json"></label><textarea id="restoreBox" placeholder="バックアップJSONを貼り付け"></textarea><button id="restoreData" class="subBtn">貼り付けたJSONから復元</button><p class="note">30日以上書き出していない場合は、起動時にバックアップを促します。内部にも最新状態を自動保存します。</p></div>
-  </details>
-</section>
-<section id="manageDetailPage" class="reviewDetailPage hidden" aria-hidden="true">
-  <div class="reviewDetailHeader smartOverlayHeader">
-    <button id="manageBackBtn" class="overlayBackBtn" aria-label="前の画面へ戻る">←</button>
-    <div class="overlayTitleBlock"><h2 id="manageDetailTitle">問題データ管理</h2><div id="manageDetailMeta" class="note">日付を選択してください</div></div>
-  </div>
-  <div class="reviewDetailBody manageWorkspaceBody">
-    <section id="manageWorkspaceList">
-      <div class="card manageControlCard">
-        <div class="manageUtility"><button id="restoreLastDeleted" class="smallBtn">直前の削除を復元</button><button id="repairStorage" class="smallBtn">保存データを修復</button></div>
-        <div class="manageFilters"><label>表示<select id="manageFilter"><option value="custom">追加問題のみ</option><option value="all">すべて</option><option value="one_by_one">一問一答</option><option value="practice60">総合演習60問</option><option value="exam_style">本番形式120問</option></select></label><label>並び替え<select id="manageSort"><option value="new">新しい順</option><option value="old">古い順</option><option value="title">タイトル順</option><option value="questions">問題数が多い順</option></select></label><label>検索<input id="manageSearch" placeholder="日付・タイトル・セット名で検索"></label></div>
+  <div class="data-grid">
+    <div class="data-item" id="learningDataItem">
+      <span class="data-icon" aria-hidden="true">🧠</span>
+      <div class="data-body">
+        <div class="data-name">学習状況</div>
+        <div class="data-status-line"><span class="status-dot" id="learningStatusDot"></span><div class="data-status" id="learningCompactStatus">未読込</div></div>
+        <div class="data-meta" id="learningMetaStatus">学習状況JSONを選択してください</div>
       </div>
-      <div id="examManageList"></div>
-      <details class="card dangerZone"><summary>一括削除・標準問題</summary><div class="manageActions"><button id="deleteAllCustom" class="dangerBtn">追加問題を全削除</button><button id="deleteAllBuiltin" class="dangerBtn">標準内蔵を全削除</button><button id="restoreAllBuiltin" class="smallBtn">標準内蔵を復元</button></div></details>
-    </section>
-    <section id="manageWorkspaceDetail" class="hidden"></section>
+      <div class="data-item-actions">
+        <button class="icon-btn" id="refreshLearningBtn" type="button" title="同じファイルから再読込">更新</button>
+        <button class="icon-btn" id="chooseLearningBtn" type="button">選択</button>
+      </div>
+    </div>
+    <div class="data-item" id="tkdbDataItem">
+      <span class="data-icon" aria-hidden="true">📚</span>
+      <div class="data-body">
+        <div class="data-name">TKDB</div>
+        <div class="data-status-line"><span class="status-dot ready" id="tkdbStatusDot"></span><div class="data-status ready" id="tkdbCompactStatus">内蔵データを使用</div></div>
+        <div class="data-meta" id="tkdbMetaStatus">data/tkdb.json</div>
+      </div>
+      <div class="data-item-actions">
+        <button class="icon-btn" id="refreshTkdbBtn" type="button" title="同じファイルから再読込">更新</button>
+        <button class="icon-btn" id="chooseTkdbBtn" type="button">選択</button>
+      </div>
+    </div>
   </div>
-  <button id="manageTopBtn" class="overlayTopFab" aria-label="ページ上部へ戻る">↑</button>
-</section>
-<section id="settings" class="page hidden">
-  <div class="card"><h2>設定</h2><button id="resetSet" class="subBtn">現在の回答をリセット</button><button id="resetAll" class="dangerBtn">回答履歴を全削除</button></div>
-  <div class="card"><h2>バージョン</h2><div class="versionBox">Version <b id="appVersion">v14.3.7</b><br>Build <b id="appBuild">2026-07-26</b></div></div>
-</section>
-
-</main>
-
+  <details class="data-details">
+    <summary>データ詳細</summary>
+    <div class="data-details-grid">
+      <div class="data-detail">問題DB<b id="masterDetail">未読込</b></div>
+      <div class="data-detail">学習状況<b id="learningDetail">未読込</b></div>
+      <div class="data-detail">TKDB<b id="tkdbDetail">未読込</b></div>
+    </div>
+  </details>
+  <input class="visually-hidden" accept="application/json,.json" id="learningFile" type="file"/>
+  <input class="visually-hidden" accept="application/json,.json" id="tkdbFile" type="file"/>
 </div>
-
-
-<div id="timerModal" class="modal hidden"><div class="modalBox timerMini"><div class="homeCardHead"><h2>タイマー</h2><button id="closeTimerModal" class="smallBtn">閉じる</button></div><div class="timerDisplay">30:00</div><div class="timerStatus">停止中</div><label>分<input id="quickTimerMinutes" type="number" min="1" value="30"></label><div class="buttonRow"><button id="quickTimerStart" class="mainBtn">開始</button><button class="subBtn timerPauseBtn">一時停止</button><button class="subBtn timerResumeBtn">再開</button><button class="subBtn timerResetBtn">リセット</button></div></div></div>
-
-<div id="toast"></div>
-<div id="timerStartModal" class="modal hidden">
-  <div class="modalBox">
-    <h2>本番モード</h2>
-    <p id="timerStartText" class="note"></p>
-    <label>制限時間（分）
-      <input id="timerStartMinutes" type="number" min="1" max="300" inputmode="numeric">
-    </label>
-    <div id="timerCountdown" class="countdownText hidden">3</div>
-    <button id="timerStartConfirm" class="mainBtn">開始</button>
-    <button id="timerStartCancel" class="subBtn">戻る</button>
-  </div>
+<div class="card hero-card">
+<h2>毎日の問題を生成</h2>
+<p class="small">東京2021〜2025の公式過去問DBから、選択した形式・日付・生成区分で問題を生成します。一問一答は、公式問題の各記述を○×形式へ分解して生成します。第1〜5章を原則 5・5・5・10・5問で配分し、品質優先で不足章は他章から補います。</p>
+<div class="grid2">
+<label>生成形式<select id="genMode"><option value="one_by_one">一問一答120問</option><option value="practice60">総合演習60問</option><option value="exam_style">本番形式120問（午前60＋午後60）</option></select></label>
+<label>生成区分<select id="genKind"><option value="normal">通常</option><option value="practice">練習</option><option value="development">開発</option></select></label>
+<label>日付<input id="genDate" type="date"/></label>
+<label>同日番号<input id="genRound" min="1" type="number" value="1"/></label>
+<label>Day ID<input id="genDayId" readonly/></label>
+<label>表示タイトル<input id="genTitle" readonly/></label>
 </div>
-
-<script src="./app.js?v=14.3.7"></script>
-</body>
+<div class="button-row">
+<button id="loadDbBtn">DBを読み込む</button>
+<button id="validateDbBtn">DBを検査</button>
+<button class="primary" id="generateDailyBtn">一問一答を生成</button>
+<button id="downloadDailyBtn">統合JSON保存</button>
+<button id="downloadSetsBtn">個別JSON保存</button>
+</div>
+<div class="button-row"><button class="compact-btn" id="chooseMasterBtn" type="button">問題DBを変更</button></div><input class="visually-hidden" accept="application/json,.json" id="masterFile" type="file"/>
+<div class="status-box" id="generatorStatus">DB未読込</div>
+</div>
+<div class="card">
+<h2>品質検査</h2>
+<div class="summary-grid" id="validationSummary"></div>
+<details><summary>除外された問題</summary><pre id="validationDetails"></pre></details>
+</div>
+<div class="card">
+<h2>生成結果</h2>
+<div class="summary-grid" id="generationSummary"></div>
+<textarea class="large-json" id="generatedJson" placeholder="生成後のアプリ互換JSONが表示されます"></textarea>
+</div>
+</section>
+<footer class="small" style="margin-top:18px;border-top:1px solid #ddd;padding-top:10px">公開版: v2.0.0 / DB: Tokyo 2021–2025・600問</footer>
+<script src="app.bundle.js?v=2.0.0"></script>
+<script>
+window.addEventListener('load', function(){
+  setTimeout(function(){
+    var status=document.getElementById('generatorStatus');
+    if(status && status.textContent==='DB未読込'){
+      status.textContent='JavaScriptを読み込めていません。app.bundle.js がGitHubに配置されているか確認してください。';
+      status.className='status-box err';
+    }
+  },1500);
+});
+</script>
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", async () => {
+    try {
+      const reg = await navigator.serviceWorker.register("./service-worker.js?v=2.0.0", { updateViaCache: "none" });
+      await reg.update();
+    } catch (e) { console.warn("Service Worker registration failed", e); }
+  });
+}
+</script></body>
 </html>

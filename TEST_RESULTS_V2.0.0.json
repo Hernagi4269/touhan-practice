@@ -1,0 +1,10 @@
+{
+  "html_version": true,
+  "js_engine_version": true,
+  "no_explanation_file_ref": true,
+  "file_system_api": true,
+  "getKnowledge_api": true,
+  "tkdb_records": 3822,
+  "tkdb_questions": 600,
+  "master_questions": 600
+}
