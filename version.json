@@ -1,6 +1,5 @@
 {
-  "version": "14.5.0",
-  "build": "unknown-flag-ui",
-  "generatedAt": "2026-07-27T00:00:00+09:00",
-  "buildDate": "2026-07-29"
+  "version": "14.6.0",
+  "name": "過去問モード対応",
+  "updated": "2026-07-30"
 }

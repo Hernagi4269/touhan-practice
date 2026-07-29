@@ -166,7 +166,8 @@ function effectiveShortExplanation(e,s,q,importedShort=""){
 const CATEGORIES=[
   {id:"one_by_one",label:"一問一答"},
   {id:"practice60",label:"総合演習60問"},
-  {id:"exam_style",label:"本番形式120問"}
+  {id:"exam_style",label:"本番形式120問"},
+  {id:"past_exam",label:"過去問"}
 ];
 let timerState=loadTimerState();
 function safeReadJson(key,fallback){
@@ -179,6 +180,7 @@ function saveTimer(){localStorage.setItem(TIMER_STORE,JSON.stringify(timerState)
 function canonicalCategory(c){
   if(["exam_choices","exam_full","exam120"].includes(c))return "exam_style";
   if(["practice60","comprehensive60","exam60"].includes(c))return "practice60";
+  if(["past_exam","official_exam","past"].includes(c))return "past_exam";
   return c||"one_by_one";
 }
 function catLabel(c){c=canonicalCategory(c);return (CATEGORIES.find(x=>x.id===c)||CATEGORIES[0]).label}
@@ -200,7 +202,7 @@ function normalizeExam(e){
       const base=e.sets[0],id=base.id||`${e.id}-practice60`;
       e.sets=splitSet(base,30,"前半 30問","後半 30問",`${id}-front`,`${id}-back`);
     }else e.sets.forEach((se,i)=>{if(i<2)se.title=i===0?"前半 30問":"後半 30問";});
-  }else if(e.category==="exam_style"){
+  }else if(e.category==="exam_style"||e.category==="past_exam"){
     if(e.sets.length===1&&(e.sets[0].questions||[]).length===120){
       const base=e.sets[0],id=base.id||`${e.id}-exam120`;
       e.sets=splitSet(base,60,"前半 60問","後半 60問",`${id}-front`,`${id}-back`);
@@ -787,6 +789,7 @@ function filteredManageExams(){
     if(manageFilter==="one_by_one"&&cat!=="one_by_one")return false;
     if(manageFilter==="exam_style"&&cat!=="exam_style")return false;
     if(manageFilter==="practice60"&&cat!=="practice60")return false;
+    if(manageFilter==="past_exam"&&cat!=="past_exam")return false;
     if(manageFilter==="sample"&&!sample)return false;
     if(q&&!examSearchText(e).includes(q))return false;
     return true;
