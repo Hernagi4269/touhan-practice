@@ -220,3 +220,7 @@ body{background:var(--canvas)}
 .compactFileLabel{width:auto;display:inline-flex;align-items:center;justify-content:center;border:1px solid #cbd5e1;border-radius:12px;padding:9px 12px;background:#fff;color:#334155;font-size:12px;font-weight:800;cursor:pointer}
 .compactFileLabel input{display:none}.pasteRestore{margin-top:10px}.pasteRestore summary{cursor:pointer;font-size:12px;font-weight:800;color:#475569}.pasteRestore textarea{margin-top:10px;min-height:130px!important}
 @media(max-width:620px){.dataManagerGrid{grid-template-columns:1fr}.dataManagerCardWide{grid-column:auto}.dataActionRow>*{flex:1 1 auto}.compactFileLabel{min-width:110px}}
+
+/* v14.5.0 要確認問題・復習操作 */
+.reviewDoneBtnTop{display:block;width:100%;margin:10px 0 14px;position:sticky;top:72px;z-index:2}
+.reviewReasonBadge{display:inline-flex;align-items:center;margin:0 0 12px;padding:6px 10px;border-radius:999px;background:var(--soft,#eef4ff);font-weight:700;font-size:.85rem}
