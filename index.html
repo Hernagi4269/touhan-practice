@@ -6,10 +6,10 @@
 <meta name="theme-color" content="#111827">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="登販">
-<link rel="manifest" href="./manifest.json?v=14.3.7">
+<link rel="manifest" href="./manifest.json?v=14.7.1">
 <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
-<link rel="stylesheet" href="./style.css?v=14.3.7">
-<title>登録販売者 試験対策 v14.3.7</title>
+<link rel="stylesheet" href="./style.css?v=14.7.1">
+<title>登録販売者 試験対策 v14.7.1</title>
 </head>
 <body>
 <div id="login" class="screen">
@@ -171,7 +171,6 @@
     <section id="jsonWorkspaceMenu">
       <button class="card workspaceMenuButton" data-json-page="problem"><div><b>問題JSON</b><small>生成した問題をアプリへ追加</small></div><span>›</span></button>
       <button class="card workspaceMenuButton" data-json-page="explanation"><div><b>詳しい解説JSON</b><small>解説依頼の出力・解説結果の取込</small></div><span>›</span></button>
-      <button class="card workspaceMenuButton" data-json-page="learning"><div><b>学習状況JSON</b><small>正誤・迷った・出題履歴・詳しい解説を生成エンジンへ渡す</small></div><span>›</span></button>
     </section>
     <section id="jsonWorkspaceProblem" class="hidden">
       <div class="card">
@@ -191,14 +190,6 @@
         <div class="buttonRow"><button id="importExplanationJson" class="mainBtn">詳しい解説JSONを取り込み</button><button id="clearExplanationImportBox" class="subBtn">全消去</button></div>
         <div class="buttonRow"><button id="exportTkdbPatch" class="mainBtn">TKDB追加分を書き出す</button><button id="clearTkdbPatchQueue" class="subBtn">追加候補を消去</button></div>
         <p class="note">取り込んだ詳しい解説は端末内で即時利用され、同時にTKDB追加候補へ蓄積されます。書き出したパッチをTKDBの統合ツールへ渡すと正式DBへ反映できます。</p>
-      </div>
-    </section>
-    <section id="jsonWorkspaceLearning" class="hidden">
-      <div class="card">
-        <h3>学習状況JSON</h3>
-        <p class="note">採点済み問題の正誤、迷った記録、最終解答日時をまとめます。生成エンジンへ読み込ませると、未出題を最優先し、その次に誤答・迷った問題を優先できます。</p>
-        <div id="learningStateSummary" class="note"></div>
-        <div class="buttonRow"><button id="downloadLearningState" class="mainBtn">学習状況JSONを保存</button><button id="copyLearningState" class="subBtn">コピー</button></div>
       </div>
     </section>
   </div>
@@ -221,7 +212,7 @@
     </div>
   </div>
   <div id="dataImport" class="card dataSection dataLauncherCard">
-    <div class="dataLauncherText"><b>JSON入力・解説管理</b><small>問題追加、詳しい解説、学習状況</small></div>
+    <div class="dataLauncherText"><b>JSON入力・解説管理</b><small>問題追加、詳しい解説</small></div>
     <button id="openJsonWorkspace" class="mainBtn compactBtn">開く</button>
   </div>
   <div id="dataManage" class="card dataSection dataLauncherCard">
@@ -232,7 +223,7 @@
     <summary><span>問題PDF</span><small>教材として保存・共有</small></summary>
     <div class="dataSectionBody"><p class="note">現在選択している問題回をPDF用ページで開きます。ページ上部の「PDF保存画面を開く」から保存し、「アプリに戻る」で戻れます。</p><div class="pdfActionGrid"><button id="printQuestionsOnly" class="subBtn">問題PDFを開く</button><button id="printQuestionsFull" class="mainBtn">問題＋解答＋解説PDFを開く</button></div><p class="note">詳しい解説が未取得の問題は、解説依頼JSONをChatGPTへ送り、返された詳しい解説JSONを読み込むと復習画面とPDFに反映されます。</p></div>
   </details>
-  <details id="dataBackup" class="card dataSection" open>
+  <details id="dataBackup" class="card dataSection">
     <summary><span>データ管理</span><small>学習状況・TKDB・フルバックアップ</small></summary>
     <div class="dataSectionBody dataManagerGrid">
       <section class="dataManagerCard">
@@ -263,7 +254,7 @@
     <section id="manageWorkspaceList">
       <div class="card manageControlCard">
         <div class="manageUtility"><button id="restoreLastDeleted" class="smallBtn">直前の削除を復元</button><button id="repairStorage" class="smallBtn">保存データを修復</button></div>
-        <div class="manageFilters"><label>表示<select id="manageFilter"><option value="custom">追加問題のみ</option><option value="all">すべて</option><option value="one_by_one">一問一答</option><option value="practice60">総合演習60問</option><option value="exam_style">本番形式120問</option></select></label><label>並び替え<select id="manageSort"><option value="new">新しい順</option><option value="old">古い順</option><option value="title">タイトル順</option><option value="questions">問題数が多い順</option></select></label><label>検索<input id="manageSearch" placeholder="日付・タイトル・セット名で検索"></label></div>
+        <div class="manageFilters"><label>表示<select id="manageFilter"><option value="custom">追加問題のみ</option><option value="all">すべて</option><option value="one_by_one">一問一答</option><option value="practice60">総合演習60問</option><option value="exam_style">本番形式120問</option><option value="past_exam">過去問</option></select></label><label>並び替え<select id="manageSort"><option value="new">新しい順</option><option value="old">古い順</option><option value="title">タイトル順</option><option value="questions">問題数が多い順</option></select></label><label>検索<input id="manageSearch" placeholder="日付・タイトル・セット名で検索"></label></div>
       </div>
       <div id="examManageList"></div>
       <details class="card dangerZone"><summary>一括削除・標準問題</summary><div class="manageActions"><button id="deleteAllCustom" class="dangerBtn">追加問題を全削除</button><button id="deleteAllBuiltin" class="dangerBtn">標準内蔵を全削除</button><button id="restoreAllBuiltin" class="smallBtn">標準内蔵を復元</button></div></details>
@@ -274,7 +265,7 @@
 </section>
 <section id="settings" class="page hidden">
   <div class="card"><h2>設定</h2><button id="resetSet" class="subBtn">現在の回答をリセット</button><button id="resetAll" class="dangerBtn">回答履歴を全削除</button></div>
-  <div class="card"><h2>バージョン</h2><div class="versionBox">Version <b id="appVersion">v14.3.7</b><br>Build <b id="appBuild">2026-07-26</b></div></div>
+  <div class="card"><h2>バージョン</h2><div class="versionBox">Version <b id="appVersion">v14.7.1</b><br>Build <b id="appBuild">2026-07-31</b></div></div>
 </section>
 
 </main>
@@ -298,6 +289,6 @@
   </div>
 </div>
 
-<script src="./app.js?v=14.3.7"></script>
+<script src="./app.js?v=14.7.1"></script>
 </body>
 </html>

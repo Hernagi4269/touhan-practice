@@ -1,6 +1,5 @@
 {
-  "version": "14.5.0",
-  "build": "unknown-flag-ui",
-  "generatedAt": "2026-07-27T00:00:00+09:00",
-  "buildDate": "2026-07-29"
+  "version": "14.7.1",
+  "name": "学習状況JSON出力一本化・GitHub整理",
+  "updated": "2026-07-31"
 }
